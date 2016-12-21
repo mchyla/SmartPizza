@@ -1,0 +1,67 @@
+<div class="container">
+    <h1>People</h1>
+
+    <h3>{{message}}</h3>
+
+    <div class="col-md-4">
+        <br/>
+        <form>
+            <div class="form-group">
+                <h2>Add person</h2>
+            </div>
+            <div class="form-group">
+                <label for="name">Login:</label>
+                <div>
+                    <input type="text" class="form-control" id="loginOfUser" placeholder="Login"
+                           ng-model="loginOfUser"/>
+                </div>
+
+                <label for="name">Haslo:</label>
+                <div>
+                    <input type="text" class="form-control" id="passwordUser" placeholder="Hasło"
+                           ng-model="passwordOfUser"/>
+                </div>
+
+                <label for="name">Email:</label>
+                <div>
+                    <input type="email" class="form-control" id="emailOfUser" placeholder="Email"
+                           ng-model="emailOfUser"/>
+                </div>
+                <label for="name">Phone: </label>
+                <div>
+                    <input type="text" class="fo rm-control" id="phonesOfUser" placeholder="Telefon"
+                           ng-model="phonesOfUser"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <button type="submit" class="btn btn-success" ng-click="saveUser()">Create</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br/>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Login</th>
+            <th>Password</th>
+            <th>Email</th>
+            <th>Phones</th>
+        </tr>
+        </thead>
+        <!--mamy petle for each-->
+        <!--&lt;!&ndash;p.id&ndash;&gt; bo w postmanie w json gostek ma pole o nazwie id i tak samo dla imienie i nazwiska-->
+        <tbody>
+        <tr ng-repeat="p in users |orderBy:'login'"> <!--to teraz mi pokaz nazwe listy w js o nazwie user-->
+            <td>{{ p.id }}</td>
+            <td>{{ p.login }}</td>
+            <td>{{ p.password }}</td>
+            <td>{{ p.email}}</td>
+            <td>{{ p.phones}}</td>
+        </tr>
+        </tbody><!--w js podpopwiada w html czasem tez TO PATRZ NA TE PODPOWIEDZI SUPER SA PA TO  -->
+    </table>
+
+</div>
