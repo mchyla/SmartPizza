@@ -18,5 +18,13 @@ nikoApp.config(function ($routeProvider) {
             templateUrl: 'views/about.html',
             controller: 'AboutController'
         })
+        .when('/addIngredient', {
+            templateUrl: 'views/addIngredient.html',
+            controller: 'IngredientController'
+        })
+        .when('/addPizza', {
+            templateUrl: 'views/addPizza.html',
+            controller: 'PizzaController'
+        })
         .otherwise({redirectTo: '/'});
 });

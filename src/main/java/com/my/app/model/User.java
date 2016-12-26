@@ -3,7 +3,6 @@ package com.my.app.model;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +24,9 @@ public class User {
 
     @OneToMany
     private List<Adress> adress;
+
+    @OneToMany
+    private List<OrderPizza> order;
 
     public User() {
     }

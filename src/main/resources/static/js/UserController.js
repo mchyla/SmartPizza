@@ -2,7 +2,7 @@
  * Created by Marcin on 24.11.2016.
  */
 angular.module('nikoApp').controller('UserController', function ($scope, $resource, $http) {
-    $scope.message = 'Hello from PeopleController';
+    $scope.message = 'Hello from UserController';
     $scope.users;
 
     //$resource("../rest/api"}).get(); return an object.
