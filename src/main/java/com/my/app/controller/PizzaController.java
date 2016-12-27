@@ -21,31 +21,56 @@ public class PizzaController {
     private PizzaRepository pizzaRepository;
 
     @PostMapping("/add")
-    public ResponseEntity<?> savePizza(@RequestBody Pizza pizza){
-        pizzaRepository.save(pizza);
-        System.out.println(pizza.getName());
-        if(pizza.getPizzaid()!=null){
-            return ResponseEntity.ok(pizza);
+    public ResponseEntity<?> savePizza(@RequestBody Pizza pizza) {
+
+
+        try {
+            Pizza u = pizzaRepository.findOneByName(pizza.getName());
+            if (u == null) {
+                System.out.println("wchodz w ifa");
+                pizzaRepository.save(pizza);
+                if (pizza.getPizzaid() != null) {
+                    return ResponseEntity.ok(pizza);
+                }
+            } else {
+                System.out.println("wchodze w else ");
+                u.setPrice(pizza.getPrice());
+                u.setIngredient(pizza.getIngredient());
+                pizzaRepository.save(u);
+                if (u.getPizzaid() != null) {
+                    return ResponseEntity.ok(u);
+                }
+            }
+
+            return new ResponseEntity<Pizza>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         return new ResponseEntity<Pizza>(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> findAll(){
+    public ResponseEntity<?> findAll() {
         List<Pizza> people = pizzaRepository.findAll();
-        if(people.size()>0){
+        if (people.size() > 0) {
             return ResponseEntity.ok(people);
         }
         return new ResponseEntity<Pizza>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/{name}/ingredient")
-    public List<Ingredient> getPizzaIngredient(@PathVariable("name") String name){
-        return pizzaRepository.findByName(name).getIngredient();
+    public List<Ingredient> getPizzaIngredient(@PathVariable("name") String name) {
+        return pizzaRepository.findOneByName(name).getIngredient();
     }
 
-    @PostMapping("/remove/{id}")
-    public void removePizza(@PathVariable("id") Long id){ //to ("id") mozna usnac bo zmienna nazywa sie tak samo
-        pizzaRepository.removeByPizzaid(id);
+    @GetMapping("/{name}")
+    public Pizza getPizzaByName(@PathVariable("name") String name) {
+        return pizzaRepository.findOneByName(name);
+    }
+
+    @DeleteMapping("/remove/{id}")
+    public void removePizza(@PathVariable("id") Long id) { //to ("id") mozna usnac bo zmienna nazywa sie tak samo
+       int i =  pizzaRepository.removeByPizzaid(id);
+        System.out.println(i);
     }
 }

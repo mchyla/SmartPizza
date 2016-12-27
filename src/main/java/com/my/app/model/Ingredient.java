@@ -1,9 +1,7 @@
 package com.my.app.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Marcin on 26/12/2016.
@@ -24,6 +22,7 @@ public class Ingredient {
         this.name = name;
         this.vege = vege;
     }
+
 
     public Long getIngredient_id() {
         return ingredient_id;

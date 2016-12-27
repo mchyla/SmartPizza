@@ -1,7 +1,7 @@
 /**
  * Created by Marcin on 26/12/2016.
  */
-angular.module('nikoApp').controller('PizzaController', function ($scope, $resource, $http) {
+angular.module('nikoApp').controller('PizzaAddCtrl', function ($scope, $resource, $http) {
     $scope.message = 'Hello from PizzaController';
     $scope.allInd;
     $scope.pizza;
@@ -51,7 +51,15 @@ angular.module('nikoApp').controller('PizzaController', function ($scope, $resou
         })
     };
 
-    $scope.clicked = function(){
-        alert("clicked")
-    }
+    $scope.deletePizza = function (pizza) {
+        var id = pizza.pizzaid;
+        alert(id);
+        $http.delete('/api/pizza/remove/'+id).success(function () { //wywloujemy
+            //alert('Thanks');
+            loadAllPizzaFromDb();
+        }).error(function () {
+            alert('We have problem!');
+        })
+    };
+
 });

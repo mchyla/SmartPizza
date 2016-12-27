@@ -1,7 +1,7 @@
 // create the module and name it scotchApp
 var nikoApp = angular.module('nikoApp', ['ngRoute', 'ngResource', 'ui.bootstrap']);
 
-nikoApp.config(function ($routeProvider) {
+nikoApp.config(function ($routeProvider, $httpProvider) {
     $routeProvider
 
         .when('/', {
@@ -23,8 +23,11 @@ nikoApp.config(function ($routeProvider) {
             controller: 'IngredientController'
         })
         .when('/addPizza', {
-            templateUrl: 'views/addPizza.html',
-            controller: 'PizzaController'
+            templateUrl: 'views/pizzaAdd.html',
+            controller: 'PizzaAddCtrl'
         })
         .otherwise({redirectTo: '/'});
+
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+
 });

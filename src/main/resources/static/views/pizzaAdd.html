@@ -46,10 +46,8 @@
             <th>Price</th>
         </tr>
         </thead>
-        <!--mamy petle for each-->
-        <!--&lt;!&ndash;p.id&ndash;&gt; bo w postmanie w json gostek ma pole o nazwie id i tak samo dla imienie i nazwiska-->
         <tbody>
-        <tr ng-repeat="p in pizza |orderBy:'name'"> &lt;!&ndash;to teraz mi pokaz nazwe listy w js o nazwie user&ndash;&gt;
+        <tr ng-repeat="p in pizza |orderBy:'name'">
 
             <td>{{ p.name }}</td>
             <td>
@@ -59,12 +57,12 @@
             </td>
             <td>{{ p.price}}</td>
             <td nowrap=nowrap>
-                <a href="#!/edit"><i class="glyphicon glyphicon-pencil"></i></a>
-                <i class="glyphicon glyphicon-remove"></i>
+                <a ng-click = "loadData(p)"><i class="glyphicon glyphicon-pencil"></i></a>
+                <a ng-click = "deletePizza(p)"><i class="glyphicon glyphicon-remove"></i></a>
             </td>
         </tr>
         </tr>
-        </tbody><!--w js podpopwiada w html czasem tez TO PATRZ NA TE PODPOWIEDZI SUPER SA PA TO  -->
+        </tbody>
     </table>
 
 </div>

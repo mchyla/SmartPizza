@@ -13,8 +13,13 @@ public class Pizza {
     @GeneratedValue
     private Long pizzaid;
 
+    @Column(unique = true)
     private String name;
-    @OneToMany
+
+    @ManyToMany()
+    @JoinTable(name="PIZZA_INGREDIENTS",
+            joinColumns={@JoinColumn(name="PIZZA_ID")},
+            inverseJoinColumns={@JoinColumn(name="INGREDIENT_ID")})
     private List<Ingredient> ingredient;
 
     private double price;
