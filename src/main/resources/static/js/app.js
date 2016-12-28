@@ -1,19 +1,17 @@
 // create the module and name it scotchApp
 var nikoApp = angular.module('nikoApp', ['ngRoute', 'ngResource', 'ui.bootstrap']);
 
-nikoApp.config(function ($routeProvider, $httpProvider) {
+nikoApp.config(function ($routeProvider, $locationProvider) {
     $routeProvider
 
         .when('/', {
             templateUrl: 'views/home.html',
             controller: 'HomeController'
         })
-
         .when('/user', {
             templateUrl: 'views/user.html',
             controller: 'UserController'
         })
-
         .when('/about', {
             templateUrl: 'views/about.html',
             controller: 'AboutController'
@@ -26,8 +24,27 @@ nikoApp.config(function ($routeProvider, $httpProvider) {
             templateUrl: 'views/pizzaAdd.html',
             controller: 'PizzaAddCtrl'
         })
+        .when('/login', {
+            templateUrl: 'views/login.html',
+            // controller: 'PizzaAddCtrl'
+        })
         .otherwise({redirectTo: '/'});
 
-    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+    // $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+    //check browser support
+    if (window.history && window.history.pushState) {
+        //$locationProvider.html5Mode(true); will cause an error $location in HTML5 mode requires a  tag to be present! Unless you set baseUrl tag after head tag like so: <head> <base href="/">
+
+        // to know more about setting base URL visit: https://docs.angularjs.org/error/$location/nobase
+
+        // if you don't wish to set base URL then use this
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
+
+
+    }
+
 
 });

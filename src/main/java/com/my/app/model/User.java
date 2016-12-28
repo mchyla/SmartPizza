@@ -1,5 +1,6 @@
 package com.my.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -28,7 +29,37 @@ public class User {
     @OneToMany
     private List<OrderPizza> order;
 
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     public User() {
+    }
+
+
+    public List<Adress> getAdress() {
+        return adress;
+    }
+
+    public void setAdress(List<Adress> adress) {
+        this.adress = adress;
+    }
+
+    public List<OrderPizza> getOrder() {
+        return order;
+    }
+
+    public void setOrder(List<OrderPizza> order) {
+        this.order = order;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public String getPassword() {

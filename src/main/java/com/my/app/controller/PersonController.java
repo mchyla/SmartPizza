@@ -5,6 +5,7 @@ import com.my.app.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
  * Created by Marcin on 24.11.2016.
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class PersonController {
     @Autowired
     private PersonRepository personRepository;
@@ -28,6 +29,7 @@ public class PersonController {
         return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
     }
 
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @GetMapping("/all")
     public ResponseEntity<?> findAll(){
         List<User> people = personRepository.findAll();

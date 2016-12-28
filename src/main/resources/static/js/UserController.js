@@ -9,7 +9,7 @@ angular.module('nikoApp').controller('UserController', function ($scope, $resour
     //$resource("../rest/api").query(); return an array.
 //a skad bierzerz zmienna user w widoku nie rozumiem??c
                 var loadAllPUserFromDb = function () {
-                    var Users = $resource('user/all', {}, {
+                    var Users = $resource('api/user/all', {}, {
                         query: {method: 'get', isArray: true, canellable: true}
         });
 
@@ -42,7 +42,7 @@ angular.module('nikoApp').controller('UserController', function ($scope, $resour
             phones: phones
         };
 
-        $http.post('/user/add',userObject).success(function () { //wywloujemy
+        $http.post('/api/user/add',userObject).success(function () { //wywloujemy
             //alert('Thanks');
             loadAllPUserFromDb();//hmm chyba powinno dzialac
         }).error(function () {
