@@ -5,26 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Created by Marcin on 24.11.2016.
+ * Created by Marcin on 30/12/2016.
  */
 @Controller
-public class IndexController {
+public class OrderController {
 
     //@PreAuthorize("hasAnyAuthority('ROLE_USER')")
-    @RequestMapping("/")
+    @RequestMapping("/order")
     public String index(){
-        return "redirect:/index.html";
+        return "BANAN";
     }
-
-/*    @RequestMapping("/login")
-    public String login(){
-        return "login";
-    }*/
-
-/*    @RequestMapping("/dupa")
-    public String test(){
-        return "test";
-    }*/
-
-
 }

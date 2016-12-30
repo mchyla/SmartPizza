@@ -19,37 +19,37 @@
 <!--<a href="#/blog">Blog</a>-->
 <!--<a href="#/about">About</a>-->
 <header>
-    <nav class="navbar navbar-inverse">
+<!--    <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="/">Niko</a>
             </div>
 
             <ul class="nav navbar-nav navbar-right">
-                <!--<li><a href="home"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="user"><i class="fa fa-shield"></i>People</a></li>-->
+                &lt;!&ndash;<li><a href="home"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="user"><i class="fa fa-shield"></i>People</a></li>&ndash;&gt;
                 <li><a href="about"><i class="fa fa-shield"></i> About</a></li>
                 <li><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <!--<li><a href="#user">People</a></li>-->
-                        <!--<li><a href="#adress">Adress</a></li>-->
+                        &lt;!&ndash;<li><a href="#user">People</a></li>&ndash;&gt;
+                        &lt;!&ndash;<li><a href="#adress">Adress</a></li>&ndash;&gt;
                         <li><a href="addIngredient">Ingredients</a></li>
-                       <!-- <li><a href="addPizza">Pizza</a></li>-->
+                       &lt;!&ndash; <li><a href="addPizza">Pizza</a></li>&ndash;&gt;
                         <li><a href="login">Login</a></li>
                     </ul></li>
             </ul>
         </div>
-    </nav>
+    </nav>-->
 </header>
 <div>
 
-    <form th:action="@{/login}" method="post">
+   <center><form th:action="@{/login}" method="post">
         <div><label> Nazwa użytkownika: <input type="text" name="username" class="form-control"
                                                placeholder="Nazwa użytkownika"/> </label></div>
         <div><label> Hasło: <input type="password" name="password" class="form-control"
                                    placeholder="Hasło"/> </label></div>
         <center><div><input type="submit" class="btn btn-md btn-warning" value="Zaloguj"/></div></center>
-    </form>
+    </form><p>{{message}}</p></center>
 
 </div>
 </body>

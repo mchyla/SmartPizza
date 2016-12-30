@@ -1,5 +1,5 @@
 // create the module and name it scotchApp
-var nikoApp = angular.module('nikoApp', ['ngRoute', 'ngResource', 'ui.bootstrap']);
+var nikoApp = angular.module('nikoApp', ['ngRoute', 'ngStorage', 'ngResource', 'ui.bootstrap']);
 
 nikoApp.config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -26,7 +26,19 @@ nikoApp.config(function ($routeProvider, $locationProvider) {
         })
         .when('/login', {
             templateUrl: 'views/login.html',
-            // controller: 'PizzaAddCtrl'
+            controller: 'LoginController'
+        })
+        .when('/menu', {
+            templateUrl: 'views/pizzaAll.html',
+            controller: 'PizzaAddCtrl'
+        })
+        .when('/register', {
+            templateUrl: 'views/register.html',
+            controller: 'UserController'
+        })
+        .when('/orderPizza', {
+            templateUrl: 'views/order.html',
+            controller: 'OrderController'
         })
         .otherwise({redirectTo: '/'});
 

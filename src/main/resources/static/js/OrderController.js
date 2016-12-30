@@ -1,25 +1,18 @@
 /**
- * Created by Marcin on 26/12/2016.
+ * Created by Marcin on 30/12/2016.
  */
-angular.module('nikoApp').controller('PizzaAddCtrl', function ($scope, $resource, $http) {
-    $scope.message = 'Hello from PizzaController';
+angular.module('nikoApp').controller('OrderController', function ($scope, $resource, $http) {
+    $scope.message = 'Hello from OrderController';
     $scope.menuMessage = ''
     $scope.allInd;
     $scope.pizza;
-    $scope.selectedItems;
+    $scope.selected;
+    var defautCost = 0;
+    $scope.cost = defautCost;
+
 
     //$resource("../rest/api"}).get(); return an object.
     //$resource("../rest/api").query(); return an array.
-    var loadAllPIngredientsFromDb = function () {
-        var Users = $resource('api/ingredient/all', {}, {
-            query: {method: 'get', isArray: true, canellable: true}
-        });
-
-        Users.query(function (response) {
-            $scope.allInd = response; // widoku będziesz używał teraz people
-        });
-    };
-    loadAllPIngredientsFromDb();
 
     var loadAllPizzaFromDb = function () {
         var Pizzas = $resource('api/pizza/all', {}, {
@@ -32,24 +25,40 @@ angular.module('nikoApp').controller('PizzaAddCtrl', function ($scope, $resource
     };
     loadAllPizzaFromDb();
 
+    $scope.costOfPizza = function () {
+        //var pizzaList = $scope.selected;
+        $scope.cost = 0;
+        //alert($scope.selected);
+        if($scope.selected != null) {
+            for (var i = 0; i < $scope.selected.length; i++) {
+                $scope.cost += $scope.selected[i].price;
+                //alert($scope.pizzaList[i].price);
+            }
+        } else {
+            $scope.cost = 0;
+        }
+    };
+
+    //costOfPizza();
+
     $scope.savePizza = function () {
         var name = $scope.pizzaName;
         var ingredientList = $scope.selectedItems;
         var price = $scope.pizzaPrice;
         alert($scope.ingredientList + " " + ingredientList)
 
-            var userObject = {
-                name: name,
-                ingredient: ingredientList,
-                price: price
-            };
+        var userObject = {
+            name: name,
+            ingredient: ingredientList,
+            price: price
+        };
 
-            $http.post('/api/pizza/add', userObject).success(function () { //wywloujemy
-                //alert('Thanks');
-                loadAllPizzaFromDb();
-            }).error(function () {
-                alert('We have problem!');
-            })
+        $http.post('/api/pizza/add', userObject).success(function () { //wywloujemy
+            //alert('Thanks');
+            loadAllPizzaFromDb();
+        }).error(function () {
+            alert('We have problem!');
+        })
 
     };
 

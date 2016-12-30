@@ -1,5 +1,6 @@
 package com.my.app.config;
 
+import com.my.app.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -31,8 +32,17 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/dupa").hasAnyAuthority("USER")
-                .antMatchers("/login").permitAll();
+                //.antMatchers("/order").hasAnyAuthority("USER")
+                .antMatchers("/home").permitAll()
+                .antMatchers("/menu").permitAll()
+                .antMatchers("/addPizza").hasAnyAuthority(Role.ROLE_ADMIN.name())
+                .antMatchers("/addIngredient").hasAnyAuthority(Role.ROLE_ADMIN.name())
+                .antMatchers("/order").hasAnyAuthority(Role.ROLE_USER.name())
+                //.anyRequest().authenticated()
+                .and().formLogin()
+                .loginPage("/login")
+                .permitAll().and().logout().permitAll();
+
         //co tam jest nie ta ze nie dziala nie rozumiem
 //        http.authorizeRequests()
 //                .antMatchers("/private/api/**").hasAnyAuthority(Role.ROLE_ADMIN.name()) //o jak tutaj, wybor do Ciebie
@@ -41,7 +51,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
         http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
         http.formLogin().successHandler(authenticationSuccessHandler);
         http.formLogin().failureHandler(authenticationFailureHandler);
-        http.formLogin().successForwardUrl("/"); //dokladnie :D
-        //http.formLogin().loginPage("login.html");
+        http.formLogin().successForwardUrl("/");
+        //http.formLogin().loginPage("/login.html");
     }
 }

@@ -1,0 +1,15 @@
+<div class="container">
+    <h1>Home</h1>
+
+    <h3>{{message}}</h3>
+    <label for="name">Pizza:</label>
+    <div>
+        <select multiple class="form-control" id="pizzaList"
+                ng-options="p as p.name for p in pizza |orderBy:'name'" ng-model="selected" ng-change="costOfPizza()">
+        </select>
+    </div>
+
+    <h3>Aktualny koszt zamówienia: {{cost}} PLN</h3>
+
+
+</div>

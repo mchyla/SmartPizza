@@ -1,7 +1,7 @@
 /**
  * Created by Marcin on 24.11.2016.
  */
-angular.module('nikoApp').controller('UserController', function ($scope, $resource, $http) {
+angular.module('nikoApp').controller('UserController', function ($scope, $resource, $http, $location) {
     $scope.message = 'Hello from UserController';
     $scope.users;
 
@@ -49,5 +49,33 @@ angular.module('nikoApp').controller('UserController', function ($scope, $resour
             alert('We have problem!');
         })
     };
+
+    $scope.registerUser = function (    ) {
+        var login = $scope.loginOfUser; //pobieramy imie z pola w html
+        var password = $scope.passwordOfUser;
+        var email = $scope.emailOfUser;
+        var phones = $scope.phoneOfUser;
+
+        //alert(name); //to tylko dla testu czy dane sie pobieraja, w google chrome ctrl+shif j otwiera conosle do debuga
+        //degug //tak sie wlacza debugger w js
+
+        //Potrzebujemy stworzyc nasz obiekt, ktorego zadamy w Javie patrz RequestBody
+        var userObject = {
+            login: login,
+            password: password,
+            email: email,
+            phones: phones
+        };
+
+        $http.post('/api/user/add',userObject).success(function () { //wywloujemy
+            //alert('Thanks');
+           // loadAllPUserFromDb();//hmm chyba powinno dzialac
+            alert('User '+ userObject.login + ' registered')
+            $location.path('/home');
+        }).error(function () {
+            alert('We have problem!');
+        })
+    };
+
 
 });

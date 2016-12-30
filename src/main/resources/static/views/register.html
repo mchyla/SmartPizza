@@ -1,0 +1,43 @@
+<div class="container">
+    <h1>People</h1>
+
+    <h3>{{message}}</h3>
+
+    <div class="col-md-4">
+        <br/>
+        <form>
+            <div class="form-group">
+                <h2>Add person</h2>
+            </div>
+            <div class="form-group">
+                <label for="name">Login:</label>
+                <div>
+                    <input type="text" class="form-control" id="loginOfUser" placeholder="Login"
+                           ng-model="loginOfUser"/>
+                </div>
+
+                <label for="name">Haslo:</label>
+                <div>
+                    <input type="text" class="form-control" id="passwordUser" placeholder="Hasło"
+                           ng-model="passwordOfUser"/>
+                </div>
+
+                <label for="name">Email:</label>
+                <div>
+                    <input type="email" class="form-control" id="emailOfUser" placeholder="Email"
+                           ng-model="emailOfUser"/>
+                </div>
+                <label for="name">Phone: </label>
+                <div>
+                    <input type="text" class="form-control" id="phonesOfUser" placeholder="Telefon"
+                           ng-model="phonesOfUser"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <button type="submit" class="btn btn-success" ng-click="registerUser()">Create</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
