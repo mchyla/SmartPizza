@@ -17,6 +17,7 @@ import java.security.Principal;
 /**
  * Created by Marcin on 30/12/2016.
  */
+//@RestController
 @Controller
 public class LoginController {
     @RequestMapping(value = "/login")

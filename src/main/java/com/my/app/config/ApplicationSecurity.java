@@ -22,7 +22,6 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
     @Autowired
     private RESTAuthenticationSuccessHandler authenticationSuccessHandler;
 
-    //Tu ciagniesz usera na sztywno, jak chcesz z bazy komentujesz to, ale narazie zostaw
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
         builder.inMemoryAuthentication().withUser("user").password("user").roles("USER").and().withUser("admin")
@@ -31,27 +30,15 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
-                //.antMatchers("/order").hasAnyAuthority("USER")
-                .antMatchers("/home").permitAll()
-                .antMatchers("/menu").permitAll()
-                .antMatchers("/addPizza").hasAnyAuthority(Role.ROLE_ADMIN.name())
-                .antMatchers("/addIngredient").hasAnyAuthority(Role.ROLE_ADMIN.name())
-                .antMatchers("/order").hasAnyAuthority(Role.ROLE_USER.name())
-                //.anyRequest().authenticated()
-                .and().formLogin()
-                .loginPage("/login")
-                .permitAll().and().logout().permitAll();
-
-        //co tam jest nie ta ze nie dziala nie rozumiem
+        http.csrf().disable();
 //        http.authorizeRequests()
-//                .antMatchers("/private/api/**").hasAnyAuthority(Role.ROLE_ADMIN.name()) //o jak tutaj, wybor do Ciebie
+//                .antMatchers("/private/api/**").hasAnyAuthority(Role.ROLE_ADMIN.name())
 //                .antMatchers("/protected/api/**").hasAnyAuthority(Role.ROLE_ADMIN.name(), Role.ROLE_USER.name())
 //                .antMatchers("/public/api/**").permitAll();
         http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
         http.formLogin().successHandler(authenticationSuccessHandler);
         http.formLogin().failureHandler(authenticationFailureHandler);
         http.formLogin().successForwardUrl("/");
-        //http.formLogin().loginPage("/login.html");
+        //http.formLogin().loginPage("login.html");
     }
 }
