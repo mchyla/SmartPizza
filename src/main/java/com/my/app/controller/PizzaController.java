@@ -50,7 +50,7 @@ public class PizzaController {
         return new ResponseEntity<Pizza>(HttpStatus.BAD_REQUEST);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    //@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @GetMapping("/all")
     public ResponseEntity<?> findAll() {
         List<Pizza> people = pizzaRepository.findAll();

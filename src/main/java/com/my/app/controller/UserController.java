@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +32,10 @@ public class UserController {
     @PostMapping("/add")
     public ResponseEntity<?> savePerson(@RequestBody User person){
         person.setRole(Role.ROLE_USER);
+        String password = person.getPassword();
+        password = BCrypt.hashpw(password, BCrypt.gensalt());
+        System.out.println(password);
+        person.setPassword(password);
         personRepository.save(person);
         //System.out.println(person.getLogin());
         if(person.getId()!=null){

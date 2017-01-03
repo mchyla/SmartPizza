@@ -26,6 +26,10 @@
     <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.css">
+
+    <style type="text/css">
+        body { background: linear-gradient(white, black) !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+    </style>
 </head>
 
 <body>
@@ -33,28 +37,44 @@
 <!--<a href="#/blog">Blog</a>-->
 <!--<a href="#/about">About</a>-->
 <header>
-    <nav class="navbar navbar-inverse" ng-controller="NavbarController">
+    <nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarController">
     <!--<nav class="navbar navbar-inverse">-->
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">Niko</a>
+                <a class="navbar-brand" href="/">SmartPizza</a>
             </div>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="home"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#home"><i class="fa fa-home"></i> Home</a></li>
 
-                <li><a href="about"><i class="fa fa-shield"></i> About</a></li>
-                <li><a href="menu"><i class="fa fa-shield"></i> Menu</a></li>
-                <li><a href="orderPizza"><i class="fa fa-shield"></i> Zamów pizze</a></li>
-                <li><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+                <li><a href="#menu"><i class="fa fa-shield"></i> Menu</a></li>
+                <li><a href="#orderPizza"><i class="fa fa-shield"></i> Zamów pizze</a></li>
+                <li ng-if="!email"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="user">People</a></li>
-                    <li><a href="adress">Adress</a></li>
-                    <li><a href="addIngredient">Dodaj składnik</a></li>
-                    <li><a href="addPizza">Dodaj pizze</a></li>
+
                     <li><a href="/login">Login</a></li>
-                    <li><a href="register">Register</a></li>
+                    <li><a href="#register">Register</a></li>
                 </ul></li>
+
+                <li ng-if="admin" class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Administracja<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#addIngredient">Dodaj składnik</a></li>
+                        <li><a href="#addPizza">Dodaj pizze</a></li>
+                        <li><a href="#user">People</a></li>
+                    </ul>
+                </li>
+
+                <li ng-if="email" class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">{{email}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#adress">Adress</a></li>
+                        <li><a href="/logout" ng-click="removeUserFromLocalStorage()">Logout</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>

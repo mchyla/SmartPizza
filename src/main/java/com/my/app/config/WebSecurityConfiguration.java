@@ -38,6 +38,9 @@ public class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdap
 
                 try {
                     User user = userRepository.findByEmail(email);
+                    if(user == null){
+                        user = userRepository.findByLogin(email);
+                    }
                     return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), true, true, true, true, AuthorityUtils.createAuthorityList(user.getRole().name()));
                 } catch (UsernameNotFoundException e) {
                     e.printStackTrace();

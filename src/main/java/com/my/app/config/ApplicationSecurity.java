@@ -22,11 +22,11 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
     @Autowired
     private RESTAuthenticationSuccessHandler authenticationSuccessHandler;
 
-    @Override
+/*    @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
         builder.inMemoryAuthentication().withUser("user").password("user").roles("USER").and().withUser("admin")
                 .password("admin").roles("ADMIN");
-    }
+    }*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
