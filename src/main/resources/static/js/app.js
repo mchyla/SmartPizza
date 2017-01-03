@@ -24,10 +24,10 @@ nikoApp.config(function ($routeProvider, $locationProvider) {
             templateUrl: 'views/pizzaAdd.html',
             controller: 'PizzaAddCtrl'
         })
-        .when('/login', {
-            templateUrl: 'views/login.html',
-            controller: 'LoginController'
-        })
+        // .when('/login', {
+        //     templateUrl: 'views/login2.html',
+        //     controller: 'LoginController'
+        // })
         .when('/menu', {
             templateUrl: 'views/pizzaAll.html',
             controller: 'PizzaAddCtrl'
@@ -44,19 +44,19 @@ nikoApp.config(function ($routeProvider, $locationProvider) {
 
     // $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
     //check browser support
-    if (window.history && window.history.pushState) {
-        //$locationProvider.html5Mode(true); will cause an error $location in HTML5 mode requires a  tag to be present! Unless you set baseUrl tag after head tag like so: <head> <base href="/">
-
-        // to know more about setting base URL visit: https://docs.angularjs.org/error/$location/nobase
-
-        // if you don't wish to set base URL then use this
-        $locationProvider.html5Mode({
-            enabled: true,
-            requireBase: false
-        });
-
-
-    }
+    // if (window.history && window.history.pushState) {
+    //     //$locationProvider.html5Mode(true); will cause an error $location in HTML5 mode requires a  tag to be present! Unless you set baseUrl tag after head tag like so: <head> <base href="/">
+    //
+    //     // to know more about setting base URL visit: https://docs.angularjs.org/error/$location/nobase
+    //
+    //     // if you don't wish to set base URL then use this
+    //     $locationProvider.html5Mode({
+    //         enabled: true,
+    //         requireBase: false
+    //     });
+    //
+    //
+    // }
 
 
 });

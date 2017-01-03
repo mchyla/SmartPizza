@@ -6,6 +6,7 @@ import com.my.app.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,6 +50,7 @@ public class PizzaController {
         return new ResponseEntity<Pizza>(HttpStatus.BAD_REQUEST);
     }
 
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @GetMapping("/all")
     public ResponseEntity<?> findAll() {
         List<Pizza> people = pizzaRepository.findAll();
