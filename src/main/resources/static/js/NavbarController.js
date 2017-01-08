@@ -5,6 +5,7 @@ angular.module('nikoApp').controller('NavbarController', function ($scope, $reso
     $scope.message = 'Hello from navbarController';
     $scope.email;
     $scope.admin;
+    $scope.login
 
     var loadCurrentUser = function () {
         //debugger;
@@ -14,9 +15,9 @@ angular.module('nikoApp').controller('NavbarController', function ($scope, $reso
 
         User.query(function (response) {
             $scope.email = response.email;
+            $scope.login = response.login;
             $localStorage.email = response.email;
-            $localStorage.first_name = response.first_name;
-            $localStorage.last_name = response.last_name;
+            $localStorage.login = response.login;
             $localStorage.role = response.role;
 
             if (angular.equals(response.role, 'ROLE_ADMIN')) {
@@ -31,8 +32,7 @@ angular.module('nikoApp').controller('NavbarController', function ($scope, $reso
 
     $scope.removeUserFromLocalStorage = function () {
         delete $localStorage.email;
-        delete $localStorage.first_name;
-        delete $localStorage.last_name;
+        delete $localStorage.login;
         $localStorage.$reset();
     }
 });

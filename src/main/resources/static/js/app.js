@@ -1,5 +1,5 @@
 // create the module and name it scotchApp
-var nikoApp = angular.module('nikoApp', ['ngRoute', 'ngStorage', 'ngResource', 'ui.bootstrap']);
+var nikoApp = angular.module('nikoApp', ['ngRoute', 'ngStorage', 'ngResource','ngAnimate', 'ui.bootstrap']);
 
 nikoApp.config(function ($routeProvider, $locationProvider) {
     $routeProvider
