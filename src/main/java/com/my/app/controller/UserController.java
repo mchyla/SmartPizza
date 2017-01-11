@@ -4,6 +4,7 @@ import com.my.app.model.Role;
 import com.my.app.model.User;
 import com.my.app.repository.PersonRepository;
 import com.my.app.repository.UserRepository;
+import org.codehaus.groovy.runtime.powerassert.SourceText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,7 +31,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/add")
-    public ResponseEntity<?> savePerson(@RequestBody User person){
+    public ResponseEntity<?> savePerson(@RequestBody User person) {
         person.setRole(Role.ROLE_USER);
         String password = person.getPassword();
         password = BCrypt.hashpw(password, BCrypt.gensalt());
@@ -38,7 +39,7 @@ public class UserController {
         person.setPassword(password);
         personRepository.save(person);
         //System.out.println(person.getLogin());
-        if(person.getId()!=null){
+        if (person.getId() != null) {
             return ResponseEntity.ok(person);
         }
         return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
@@ -46,16 +47,16 @@ public class UserController {
 
     //@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @GetMapping("/all")
-    public ResponseEntity<?> findAll(){
+    public ResponseEntity<?> findAll() {
         List<User> people = personRepository.findAll();
-        if(people.size()>0){
+        if (people.size() > 0) {
             return ResponseEntity.ok(people);
         }
         return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/remove/{id}")
-    public void removePerson(@PathVariable("id") Long id){ //to ("id") mozna usnac bo zmienna nazywa sie tak samo
+    public void removePerson(@PathVariable("id") Long id) { //to ("id") mozna usnac bo zmienna nazywa sie tak samo
         personRepository.removeOne(id);
     }
 
@@ -67,5 +68,21 @@ public class UserController {
             return ResponseEntity.ok(user.get());
         }
         return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("/update")
+    public void updateUser(@RequestBody User user) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        User currentUser = userRepository.findOne(user.getId());
+        if (currentUser != null) {
+
+            currentUser.setLogin(user.getLogin());
+            currentUser.setEmail(user.getEmail());
+            currentUser.setPhones(user.getPhones());
+            userRepository.save(currentUser);
+        } else {
+
+        }
     }
 }

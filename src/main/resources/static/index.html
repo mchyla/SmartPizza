@@ -3,6 +3,7 @@
 <!-- define angular app -->
 <html ng-app="nikoApp">
 <head>
+    <meta charset=“utf-8”/>
     <script src="/AngularJS/angular.min.js"></script>
     <script src="/AngularJS/angular-resource.js"></script>
     <script src="/AngularJS/angular-route.js"></script>
@@ -16,8 +17,11 @@
     <script type="text/javascript" src='/js/IngredientController.js'></script>
     <script type="text/javascript" src='/js/PizzaAddCtrl.js'></script>
     <script type="text/javascript" src='/js/NavbarController.js'></script>
-    <script type="text/javascript" src='/js/LoginController.js'></script>
+    <!--<script type="text/javascript" src='/js/LoginController.js'></script>-->
     <script type="text/javascript" src='/js/OrderController.js'></script>
+    <script type="text/javascript" src='/js/SettingsController.js'></script>
+    <script type="text/javascript" src='/js/UserService.js'></script>
+
 
     <script src="js/ui-bootstrap-tpls-2.1.3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -45,7 +49,7 @@
 
 </head>
 
-<body id="page-top" class="customBg">
+<body id="page-top" class = "customBg">
 
 <nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarController">
     <!--<nav class="navbar navbar-inverse">-->
@@ -56,7 +60,7 @@
                     data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="#page-top"><i class="fa fa-pie-chart fa-spin"></i> SmartPizza</a>
+            <a class="navbar-brand page-scroll" href="#page-top"><i class="fa fa-pie-chart"></i> SmartPizza</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -90,6 +94,7 @@
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false"><i class="fa fa-user"></i> {{login}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        <li><a href="#userSettings">Ustawienia</a></li>
                         <li><a href="#adress">Adress</a></li>
                         <li><a href="/logout" ng-click="removeUserFromLocalStorage()">Logout</a></li>
                     </ul>

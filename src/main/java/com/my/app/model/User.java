@@ -101,4 +101,18 @@ public class User {
     public void setPhones(int phones) {
         this.phones = phones;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phones=" + phones +
+                ", adress=" + adress +
+                ", order=" + order +
+                ", role=" + role +
+                '}';
+    }
 }

@@ -1,11 +1,12 @@
 /**
  * Created by Marcin on 30/12/2016.
  */
-angular.module('nikoApp').controller('NavbarController', function ($scope, $resource, $localStorage) {
+angular.module('nikoApp').controller('NavbarController', function ($scope, $resource, $localStorage, $rootScope) {
     $scope.message = 'Hello from navbarController';
     $scope.email;
     $scope.admin;
-    $scope.login
+    $rootScope.login;
+
 
     var loadCurrentUser = function () {
         //debugger;
@@ -15,7 +16,8 @@ angular.module('nikoApp').controller('NavbarController', function ($scope, $reso
 
         User.query(function (response) {
             $scope.email = response.email;
-            $scope.login = response.login;
+            $rootScope.login = response.login;
+            $localStorage.id = response.id;
             $localStorage.email = response.email;
             $localStorage.login = response.login;
             $localStorage.role = response.role;

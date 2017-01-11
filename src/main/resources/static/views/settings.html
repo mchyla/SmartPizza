@@ -1,0 +1,66 @@
+<!--<div class="container-fluid">-->
+
+<div>
+    <div class="header-content-inner">
+        <br/><br/><br/>
+
+
+        <h1 id="homeHeading">Ustawienia {{message}}</h1>
+        <hr>
+
+        <br/><br/><br/>
+    </div>
+</div>
+
+<div class = "container-fluid">
+    <section ng-if = "!login" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Brak uprawnień!</h2>
+                    <hr class="primary">
+                    <p>Twoja mama widzi, że wchodzisz nie tam gdzie powinieneś! :)</p>
+                    <br/>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class = "container-fluid bg-primary">
+    <section ng-if = "login">
+
+        <form>
+            <div class="form-group">
+                <h2>Aktualizuj</h2>
+            </div>
+            <div class="form-group col-md-6 col-md-offset-3" align = "left">
+                <label for="name">Login:</label>
+                <div>
+                    <input type="text" class="form-control" id="loginOfUser" placeholder="Login"
+                           ng-model="user.login"/>
+                </div>
+
+                <label for="name">Email:</label>
+                <div>
+                    <input type="email" class="form-control" id="emailOfUser" placeholder="Email"
+                           ng-model="user.email"/>
+                </div>
+                <label for="name">Telefon: </label>
+                <div>
+                    <input type="text" class="form-control" id="phonesOfUser" placeholder="Telefon"
+                           ng-model="user.phones"/>
+                </div>
+            </div>
+                <br/>
+            <div class="form-group">
+                <div>
+                    <button type="submit" class="btn btn-success" ng-click="updateUser()">Zapisz</button>
+                </div>
+            </div>
+        </form>
+
+    </section>
+</div>
+<!--
+</div>-->

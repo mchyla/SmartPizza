@@ -32,13 +32,13 @@ body {
   opacity: 1;
 }
 
-html {
-  background: url(http://ollies.ca/wp-content/uploads/2016/01/Ollies-Pizza-Background-3.png) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
+/*html {*/
+  /*!*background: url(http://ollies.ca/wp-content/uploads/2016/01/Ollies-Pizza-Background-3.png) no-repeat center center fixed;*!*/
+  /*-webkit-background-size: cover;*/
+  /*-moz-background-size: cover;*/
+  /*-o-background-size: cover;*/
+  /*background-size: cover;*/
+/*}*/
 
 body {
   font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
@@ -201,6 +201,7 @@ aside {
   -o-background-size: cover;
   background-position: center;
   background-image: url('http://ollies.ca/wp-content/uploads/2016/01/Ollies-Pizza-Background-3.png');
+  background-attachment:fixed;
   text-align: center;
   color: white;
 }
