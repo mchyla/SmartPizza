@@ -1,43 +1,55 @@
-<div class="container">
-    <br/>
-    <br/>
-    <h1>People</h1>
+<div>
+    <div class="header-content-inner">
+        <br/><br/><br/>
 
-    <h3>{{message}}</h3>
 
-    <div class="col-md-4">
+        <h2 id="homeHeading">Zarejestruj się</h2>
+        <hr>
+
         <br/>
+    </div>
+</div>
+
+
+
+<div class = " container-fluid  bg-primary">
+
+    <div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+
         <form>
             <div class="form-group">
-                <h2>Add person</h2>
+                <br/>
             </div>
+
             <div class="form-group">
-                <label for="name">Login:</label>
-                <div>
+                <div style="margin-bottom: 25px" class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
                     <input type="text" class="form-control" id="loginOfUser" placeholder="Login"
                            ng-model="loginOfUser"/>
                 </div>
 
-                <label for="name">Haslo:</label>
-                <div>
-                    <input type="text" class="form-control" id="passwordUser" placeholder="Hasło"
+                <div style="margin-bottom: 25px" class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                    <input type="password" class="form-control" id="passwordUser" placeholder="Hasło"
                            ng-model="passwordOfUser"/>
                 </div>
 
-                <label for="name">Email:</label>
-                <div>
+
+                <div style="margin-bottom: 25px" class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                     <input type="email" class="form-control" id="emailOfUser" placeholder="Email"
                            ng-model="emailOfUser"/>
                 </div>
-                <label for="name">Phone: </label>
-                <div>
+
+                <div style="margin-bottom: 25px" class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
                     <input type="text" class="form-control" id="phonesOfUser" placeholder="Telefon"
                            ng-model="phonesOfUser"/>
                 </div>
             </div>
             <div class="form-group">
                 <div>
-                    <button type="submit" class="btn btn-success" ng-click="registerUser()">Create</button>
+                    <button type="submit" class="btn btn-success" ng-click="registerUser()">Register</button>
                 </div>
             </div>
         </form>

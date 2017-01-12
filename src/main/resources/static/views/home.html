@@ -1,28 +1,25 @@
 <!--<div class="container-fluid">-->
-<div>
+
     <div class="header-content-inner">
-        <br/><br/><br/>
-
-
-        <h1 ng-if="!login" id="homeHeading">Witaj w SmartPizza</h1>
-        <h1 ng-if="login" id="homeHeading">Witaj {{login}}</h1>
+        <br/><br/><br/><br/><br/>
+        <h2 ng-if="!login" id="homeHeading">Witaj w SmartPizza</h2>
+        <h2 ng-if="login" id="homeHeading">Witaj {{login}}</h2>
         <hr>
         <div ng-if="!login">
             <p> Zacznij od zalogowania lub rejestracji!</p>
+            <br/>
             <a href="#about" class="btn btn-primary btn-xl page-scroll">Rejestracja!</a>
         </div>
         <div ng-if="login">
             <h2>Co dzisiaj zamówisz?</h2>
         </div>
-
-        <br/><br/><br/>
     </div>
-</div>
 
-<section ng-if = "!login" id="contact" class="bg-primary">
-    <div class="container">
+<section ng-if = "!login" id="contact">
+    <div class="container-fluid bg-primary">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
+            <br/><br/><br/>
+            <div class="col-lg-8 col-lg-offset-2">
                 <h2 class="section-heading">Zostań z nami w kontacie!</h2>
                 <hr class="primary">
                 <p>Pozostaw swoją opinię o naszej pizzy dorgą mailową lub telefoniczną!</p>
@@ -37,32 +34,17 @@
                 <p><a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a></p>
             </div>
         </div>
+        <br/><br/><br/>
     </div>
 </section>
 
-<section ng-if = "!login" id="contact" class="bg-primary">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">Zostań z nami w kontacie!</h2>
-                <hr class="primary">
-                <p>Pozostaw swoją opinię o naszej pizzy dorgą mailową lub telefoniczną!</p>
-                <br/>
-            </div>
-            <div class="col-lg-4 col-lg-offset-2 text-center">
-                <i class="fa fa-phone fa-3x sr-contact"></i>
-                <p>123-456-6789</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section ng-if = "login" class="bg-primary">
-
+<section ng-if = "login">
+ <div class="container-fluid bg-primary">
+     <br/><br/>
         <i class="fa fa-4x fa-heart wow bounceIn text-primary" data-wow-delay=".3s"></i>
-        <h3>Made with Love</h3>
         <h2>Cieszymy się, że się zalogowałeś!</h2>
-
+     <br/><br/>
+ </div>
 </section>
 <!--
 </div>-->

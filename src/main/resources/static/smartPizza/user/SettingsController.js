@@ -59,7 +59,6 @@ angular.module('nikoApp').controller('SettingsController',
             .editUser(user)
             .then(function (response) {
                 if (response.status == 200) {
-                    alert("Pomyślnie edytowano");
                     delete $localStorage.login;
                     $localStorage.login = $scope.user.login;
                     $rootScope.login = $scope.user.login;
@@ -68,6 +67,5 @@ angular.module('nikoApp').controller('SettingsController',
                     alert("Nie udało sie");
                 }
             })
-        alert($localStorage.id +" to id  a to name " + $scope.user.login);
     }
 });

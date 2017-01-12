@@ -14,4 +14,18 @@ angular.module('nikoApp').service('UserService', function ($http) {
             return response.status;
         });
     }
+
+    this.addUser = function (user) {
+        return $http({
+            method: "POST",
+            url: 'api/user/add'/* +user.id*/,
+            data: user
+        }).then(function successCallback(response) {
+            //return angular.toJson(response.data);
+            return response;
+        }, function errorCallback(response) {
+            return response.status;
+        });
+    }
+
 });

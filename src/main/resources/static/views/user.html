@@ -56,14 +56,14 @@
         <!--mamy petle for each-->
         <!--&lt;!&ndash;p.id&ndash;&gt; bo w postmanie w json gostek ma pole o nazwie id i tak samo dla imienie i nazwiska-->
         <tbody>
-        <tr ng-repeat="p in users |orderBy:'login'"> <!--to teraz mi pokaz nazwe listy w js o nazwie user-->
+        <tr ng-repeat="p in users"> <!--to teraz mi pokaz nazwe listy w smartPizza o nazwie user-->
             <td>{{ p.id }}</td>
             <td>{{ p.login }}</td>
             <td>{{ p.password }}</td>
             <td>{{ p.email}}</td>
             <td>{{ p.phones}}</td>
         </tr>
-        </tbody><!--w js podpopwiada w html czasem tez TO PATRZ NA TE PODPOWIEDZI SUPER SA PA TO  -->
+        </tbody><!--w smartPizza podpopwiada w html czasem tez TO PATRZ NA TE PODPOWIEDZI SUPER SA PA TO  -->
     </table>
 
 </div>
