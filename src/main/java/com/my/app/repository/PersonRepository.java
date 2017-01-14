@@ -25,7 +25,7 @@ public class PersonRepository {
     }
 
     public List<User> findAll(){
-        TypedQuery query = entityManager.createQuery("select p from User p", User.class);
+        TypedQuery query = entityManager.createQuery("select p from user_table p", User.class);
         return query.getResultList();
     }
 
