@@ -202,7 +202,7 @@ aside {
   -o-background-size: cover;
   background-repeat: no-repeat !important;
   background-position: center;
-  background-image: url('../img/pizza.png');
+  background-image: url('http://ollies.ca/wp-content/uploads/2016/01/Ollies-Pizza-Background-3.png');
   background-attachment:fixed;
   text-align: center;
   color: white;
