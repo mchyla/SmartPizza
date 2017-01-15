@@ -1,39 +1,38 @@
-<div class="container">
-    <br/>
-    <br/>
-    <h1>People</h1>
+<!--<br/><br/><br/><br/><br/><br/>-->
 
-    <h3>{{message}}</h3>
-
-    <div class="col-md-4">
+<div style="margin-top: 10%" class="container-fluid bg-primary">
+    <div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <br/>
         <form>
             <div class="form-group">
                 <h2>Dodaj Adres</h2>
             </div>
             <div class="form-group">
-                <label for="name">Miasto:</label>
-                <div>
-                    <input type="text" class="form-control" id="city" placeholder="City"
-                           ng-model="city"/>
+                <div style="margin-bottom: 25px" class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-building"></i></span>
+                    <input type="text" class="form-control" id="city" placeholder="Miasto"
+                           ng-model="address.cityOfAddress"/>
                 </div>
 
-                <label for="name">Ulica:</label>
-                <div>
+
+                <div style="margin-bottom: 25px" class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-road"></i></span>
                     <input type="text" class="form-control" id="route" placeholder="Ulica"
-                           ng-model="route"/>
+                           ng-model="address.routeOfAddress"/>
                     </select>
                 </div>
 
-                <label for="name">Numer budynku:</label>
-                <div>
+
+                <div style="margin-bottom: 25px" class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-home"></i></span>
                     <input type="text" class="form-control" id="buildingNumber" placeholder="Numer budynku"
-                           ng-model="buildingNumber"/>
+                           ng-model="address.buildingNumberOfAddress"/>
                 </div>
-                <label for="name">Numer mieszkania:</label>
-                <div>
+
+                <div style="margin-bottom: 25px" class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
                     <input type="text" class="form-control" id="flatNumber" placeholder="Numer mieszkania"
-                           ng-model="flatNumber"/>
+                           ng-model="address.flatNumberOfAddress"/>
                 </div>
             </div>
             <div class="form-group">
@@ -41,35 +40,34 @@
                     <button type="submit" class="btn btn-success" ng-click="saveAddress()">Create</button>
                 </div>
             </div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+
+                    <th><center>Adres</center></th>
+                    <th><center> </center></th>
+                    <th><center> </center></th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--<select ng-model="buyers" ng-options='b.id as (b.first_name + " " + b.last_name) for b in buyers'>-->
+                <tr ng-repeat='a in Address'>
+
+                    <td ng-if="a.flatNumber">{{ a.city }} {{a.street}} {{a.houseNumber}}/{{a.flatNumber}}</td>
+                    <td ng-if="!a.flatNumber">{{ a.city }} {{a.street}} {{a.houseNumber}}</td>
+                    <td nowrap=nowrap>
+                        <a ng-click = "loadData(p)"><i class="glyphicon glyphicon-pencil"></i></a>
+                    </td>
+                    <td>
+                        <a ng-click = "deletePizza(p)"><i class="glyphicon glyphicon-remove"></i></a>
+                    </td>
+                </tr>
+                </tr>
+                </tbody>
+            </table>
         </form>
     </div>
     <br/>
-    <table class="table table-hover">
-        <thead>
-        <tr>
 
-            <th>Name</th>
-            <th>Ingredients</th>
-            <th>Price</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="p in pizza |orderBy:'name'">
-
-            <td>{{ p.name }}</td>
-            <td>
-                <span ng-repeat="ingredient in p.ingredient">
-                {{ingredient.name}}
-                </span>
-            </td>
-            <td>{{ p.price}}</td>
-            <td nowrap=nowrap>
-                <a ng-click = "loadData(p)"><i class="glyphicon glyphicon-pencil"></i></a>
-                <a ng-click = "deletePizza(p)"><i class="glyphicon glyphicon-remove"></i></a>
-            </td>
-        </tr>
-        </tr>
-        </tbody>
-    </table>
 
 </div>

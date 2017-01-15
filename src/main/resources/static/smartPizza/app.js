@@ -44,8 +44,8 @@ nikoApp.config(function ($routeProvider, $locationProvider) {
             templateUrl: 'views/settings.html',
             controller: 'SettingsController'
         })
-        .when('/userAdress', {
-            templateUrl: 'viws/addressForm.html',
+        .when('/userAddress', {
+            templateUrl: 'views/addressManagement.html',
             controller: 'AddressController'
         })
         .otherwise({redirectTo: '/'});

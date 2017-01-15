@@ -56,7 +56,7 @@ angular.module('nikoApp').controller('SettingsController',
             phones: $scope.user.phones
         }
         UserService
-            .editUser(user)
+            .editAddress(user)
             .then(function (response) {
                 if (response.status == 200) {
                     delete $localStorage.login;

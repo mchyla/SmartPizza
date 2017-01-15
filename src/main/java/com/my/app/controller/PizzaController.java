@@ -28,13 +28,11 @@ public class PizzaController {
         try {
             Pizza u = pizzaRepository.findOneByName(pizza.getName());
             if (u == null) {
-                System.out.println("wchodz w ifa");
                 pizzaRepository.save(pizza);
                 if (pizza.getPizzaid() != null) {
                     return ResponseEntity.ok(pizza);
                 }
             } else {
-                System.out.println("wchodze w else ");
                 u.setPrice(pizza.getPrice());
                 u.setIngredient(pizza.getIngredient());
                 pizzaRepository.save(u);

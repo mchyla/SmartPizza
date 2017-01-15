@@ -17,8 +17,8 @@ public class Adress {
     @Column(nullable = false)
     private String street;
     @Column(nullable = false)
-    private int houseNumber;
-    private int flatNumber;
+    private String houseNumber;
+    private String flatNumber;
 
     @OneToMany
     private List<User> user;
@@ -26,7 +26,7 @@ public class Adress {
     public Adress() {
     }
 
-    public Adress(String city, String street, int houseNumber, int flatNumber, List<User> user) {
+    public Adress(String city, String street, String houseNumber, String flatNumber, List<User> user) {
         this.city = city;
         this.street = street;
         this.houseNumber = houseNumber;
@@ -58,19 +58,19 @@ public class Adress {
         this.street = street;
     }
 
-    public int getHouseNumber() {
+    public String getHouseNumber() {
         return houseNumber;
     }
 
-    public void setHouseNumber(int houseNumber) {
+    public void setHouseNumber(String houseNumber) {
         this.houseNumber = houseNumber;
     }
 
-    public int getFlatNumber() {
+    public String getFlatNumber() {
         return flatNumber;
     }
 
-    public void setFlatNumber(int flatNumber) {
+    public void setFlatNumber(String flatNumber) {
         this.flatNumber = flatNumber;
     }
 

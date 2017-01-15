@@ -34,7 +34,7 @@ angular.module('nikoApp').controller('UserController', function ($scope, $resour
                 phones: $scope.phonesOfUser
             };
 
-            UserService.addUser(userObject).then(function (response) { //wywloujemy
+            UserService.addAddress(userObject).then(function (response) { //wywloujemy
                 //alert('Thanks');
                 if (response.status == 200) {
                     loadAllPUserFromDb();//hmm chyba powinno dzialac
@@ -52,7 +52,7 @@ angular.module('nikoApp').controller('UserController', function ($scope, $resour
                 phones: $scope.phonesOfUser
             };
 
-            UserService.addUser(userObject).then(function (response) {
+            UserService.addAddress(userObject).then(function (response) {
                 //alert('Thanks');
                 if (response.status == 200) {
                     alert('Thanks');

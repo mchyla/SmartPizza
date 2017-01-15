@@ -37,7 +37,7 @@ public class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdap
             public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
                 try {
-                    User user = userRepository.findByEmail(email);
+                    User user = userRepository.findOneByEmail(email);
                     if(user == null){
                         user = userRepository.findByLogin(email);
                     }

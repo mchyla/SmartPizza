@@ -63,7 +63,7 @@ public class UserController {
     @GetMapping(value = "/current", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getCurrentUserEmail() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Optional<User> user = Optional.ofNullable(userRepository.findByEmail(auth.getName()));
+        Optional<User> user = Optional.ofNullable(userRepository.findOneByEmail(auth.getName()));
         if (user.isPresent()) {
             return ResponseEntity.ok(user.get());
         }
