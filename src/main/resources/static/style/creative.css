@@ -33,11 +33,11 @@ body {
 }
 
 /*html {*/
-  /*!*background: url(http://ollies.ca/wp-content/uploads/2016/01/Ollies-Pizza-Background-3.png) no-repeat center center fixed;*!*/
-  /*-webkit-background-size: cover;*/
-  /*-moz-background-size: cover;*/
-  /*-o-background-size: cover;*/
-  /*background-size: cover;*/
+/*!*background: url(http://ollies.ca/wp-content/uploads/2016/01/Ollies-Pizza-Background-3.png) no-repeat center center fixed;*!*/
+/*-webkit-background-size: cover;*/
+/*-moz-background-size: cover;*/
+/*-o-background-size: cover;*/
+/*background-size: cover;*/
 /*}*/
 
 body {
@@ -78,11 +78,11 @@ p {
   background-color: #F05F40;
   background-color : transparent;
   background: rgba(0, 0, 0, 0.6);
-/*  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";       !* IE 8 *!
-  filter: alpha(opacity=50);  !* IE 5-7 *!
-  -moz-opacity: 0.5;          !* Netscape *!
-  -khtml-opacity: 0.5;        !* Safari 1.x *!
-  opacity: 0.5;               !* Good browsers *!*/
+  /*  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";       !* IE 8 *!
+    filter: alpha(opacity=50);  !* IE 5-7 *!
+    -moz-opacity: 0.5;          !* Netscape *!
+    -khtml-opacity: 0.5;        !* Safari 1.x *!
+    opacity: 0.5;               !* Good browsers *!*/
 }
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
@@ -193,14 +193,16 @@ aside {
 
 .customBg {
   position: relative;
-  width: 100%;
-  min-height: auto;
+  /*width: 100%;*/
+  /*min-height: auto;*/
+  min-height: 100%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
+  background-repeat: no-repeat !important;
   background-position: center;
-  background-image: url('http://ollies.ca/wp-content/uploads/2016/01/Ollies-Pizza-Background-3.png');
+  background-image: url('../img/pizza.png');
   background-attachment:fixed;
   text-align: center;
   color: white;
@@ -209,7 +211,7 @@ aside {
 header {
   padding-top: 50px;
   position: relative;
-  width: 100%;
+  /*width: 100%;*/
   min-height: 50%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -287,7 +289,7 @@ header .header-content .header-content-inner p {
 .portfolio-box {
   position: relative;
   display: block;
-  max-width: 650px;
+  max-width: 100%;
   margin: 0 auto;
 }
 .portfolio-box .portfolio-box-caption {
