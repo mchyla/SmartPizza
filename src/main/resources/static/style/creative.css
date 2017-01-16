@@ -16,6 +16,22 @@ body {
   transition: .3s linear all; /* IE10+ and Future Browsers */
 }
 
+.ad-left {
+  float: left;
+}
+
+.ad-right {
+  float: right;
+  margin-left: 10px;
+}
+
+.inline {
+  float:left;
+  margin-left: 10px;
+  margin-riht: 10px;
+}
+.clearBoth { clear:both;}
+
 /**
  * Pre animation -> enter
  */

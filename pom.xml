@@ -6,7 +6,7 @@
     <groupId>com.my.app</groupId>
     <artifactId>SmartPizza</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>SmartPizza</name>
     <description>Demo project for Spring Boot</description>
@@ -66,17 +66,17 @@
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons -->
 
-        <!--<dependency>-->
-            <!--<groupId>mysql</groupId>-->
-            <!--<artifactId>mysql-connector-java</artifactId>-->
-            <!--<scope>runtime</scope>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
 
 
         <dependency>
-        <groupId>org.postgresql</groupId>
-        <artifactId>postgresql</artifactId>
-        <version>9.4.1211</version>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4.1211</version>
         </dependency>
 
 

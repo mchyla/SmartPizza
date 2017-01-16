@@ -3,8 +3,6 @@
         <br/><br/><br/>
 
 
-
-
         <h1> Rzuć okiem na nasze pizze!</h1>
         <hr>
         <br/><br/><br/>
@@ -18,32 +16,40 @@
     <h3>{{menuMessage}}</h3>
 
     <br/>
-    <table class="table table-hover">
-        <thead>
-        <tr>
 
-            <th><center>Nazwa</center></th>
-            <th><center>Składniki</center></th>
-            <th><center>Cena</center></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="p in pizza |orderBy:'name'">
+        <table class="table table-hover">
+            <thead>
+            <tr>
 
-            <td>{{ p.name }}</td>
-            <td>
+                <th>
+                    <center>Nazwa</center>
+                </th>
+                <th>
+                    <center>Składniki</center>
+                </th>
+                <th>
+                    <center>Cena</center>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="p in pizza |orderBy:'name'">
+
+                <td>{{ p.name }}</td>
+                <td>
                 <span ng-repeat="ingredient in p.ingredient">
                 {{ingredient.name}}
                 </span>
-            </td>
-            <td>{{ p.price}}</td>
-<!--            <td nowrap=nowrap>
-                <a ng-click = "loadData(p)"><i class="glyphicon glyphicon-pencil"></i></a>
-                <a ng-click = "deletePizza(p)"><i class="glyphicon glyphicon-remove"></i></a>
-            </td>-->
-        </tr>
-        </tr>
-        </tbody>
-    </table>
+                </td>
+                <td>{{ p.price}}</td>
+                <!--            <td nowrap=nowrap>
+                                <a ng-click = "loadData(p)"><i class="glyphicon glyphicon-pencil"></i></a>
+                                <a ng-click = "deletePizza(p)"><i class="glyphicon glyphicon-remove"></i></a>
+                            </td>-->
+            </tr>
+            </tr>
+            </tbody>
+        </table>
+
 
 </div>

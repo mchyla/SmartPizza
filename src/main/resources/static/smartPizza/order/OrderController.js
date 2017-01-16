@@ -6,7 +6,8 @@ angular.module('nikoApp').controller('OrderController', function ($scope, $resou
     $scope.menuMessage = ''
     $scope.allInd;
     $scope.pizza;
-    $scope.selected;
+    $scope.pizzaList = [];
+    // $scope.selected;
     var defautCost = 0;
     $scope.cost = defautCost;
 
@@ -25,21 +26,44 @@ angular.module('nikoApp').controller('OrderController', function ($scope, $resou
     };
     loadAllPizzaFromDb();
 
-    $scope.costOfPizza = function () {
-        //var pizzaList = $scope.selected;
-        $scope.cost = 0;
-        //alert($scope.selected);
-        if($scope.selected != null) {
-            for (var i = 0; i < $scope.selected.length; i++) {
-                $scope.cost += $scope.selected[i].price;
-                //alert($scope.pizzaList[i].price);
+    // $scope.costOfPizza = function () {
+    //     //var pizzaList = $scope.selected;
+    //     $scope.cost = 0;
+    //     //alert($scope.selected);
+    //     if($scope.selected != null) {
+    //         for (var i = 0; i < $scope.selected.length; i++) {
+    //             $scope.cost += $scope.selected[i].price;
+    //             //alert($scope.pizzaList[i].price);
+    //         }
+    //     } else {
+    //         $scope.cost = 0;
+    //     }
+    // };
+
+    //costOfPizza();
+
+    var calculateCost = function(){
+        if($scope.pizzaList != null){
+            $scope.cost = 0;
+            for (var i = 0; i < $scope.pizzaList.length; i++){
+                $scope.cost += $scope.pizzaList[i].price;
             }
         } else {
             $scope.cost = 0;
         }
-    };
+    }
 
-    //costOfPizza();
+    $scope.addToList = function(pizza){
+        $scope.pizzaList.push(pizza);
+
+        calculateCost();
+    }
+
+    $scope.removeFromList = function(int){
+        $scope.pizzaList.splice(int, 1);
+
+        calculateCost();
+    }
 
     $scope.savePizza = function () {
         var name = $scope.pizzaName;
