@@ -6,7 +6,7 @@
     <groupId>com.my.app</groupId>
     <artifactId>SmartPizza</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>SmartPizza</name>
     <description>Demo project for Spring Boot</description>
