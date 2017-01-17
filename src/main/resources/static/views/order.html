@@ -3,8 +3,6 @@
         <br/><br/><br/>
 
 
-
-
         <h1> Już tylko jeden krok!</h1>
         <hr>
         <br/><br/><br/>
@@ -48,14 +46,45 @@
                     </td>
                     <td>{{ p.price}}</td>
                     <td nowrap=nowrap>
-                        <a ng-click="addToList(p)"><i class="fa fa-plus-circle"></i></a>
+                        <a ng-click="addToList(pizzaList, p)"><i class="fa fa-plus-circle"></i></a>
                     </td>
                 </tr>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <div class = "inline">
+
+        <div class="inline">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+
+                    <th>
+                        <center>Wybierz adres</center>
+                    </th>
+                    <th/>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="a in Address">
+
+                    <td ng-if="a.flatNumber">{{ a.city }} {{a.street}} {{a.houseNumber}}/{{a.flatNumber}}</td>
+                    <td ng-if="!a.flatNumber">{{ a.city }} {{a.street}} {{a.houseNumber}}</td>
+                    <td nowrap=nowrap>
+                        <a ng-if="addressList.length == 0" ng-click="addToList(addressList, a)"><i
+                                class="fa fa-plus-circle"></i></a>
+                    </td>
+                </tr>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="inline"><h4>Aktualne zamówienie:</h4></div>
+
+
+        <div class="inline">
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -75,7 +104,7 @@
                     <td>{{ p.name }}</td>
                     <td>{{ p.price}}</td>
                     <td nowrap=nowrap>
-                        <a ng-click="removeFromList($index)"><i class="fa fa-minus-circle"></i></a>
+                        <a ng-click="removeFromList(pizzaList, $index)"><i class="fa fa-minus-circle"></i></a>
                     </td>
                 </tr>
                 </tr>
@@ -83,7 +112,38 @@
             </table>
         </div>
 
-        <h4 class = "inline">Aktualny koszt zamówienia: {{cost}} PLN</h4>
+
+        <div ng-if="login" class="inline">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+
+                    <th>
+                        <center>Wybrany adres</center>
+                    </th>
+                    <th/>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="a in addressList track by $index">
+                    <td ng-if="a.flatNumber">{{ a.city }} {{a.street}} {{a.houseNumber}}/{{a.flatNumber}}</td>
+                    <td ng-if="!a.flatNumber">{{ a.city }} {{a.street}} {{a.houseNumber}}</td>
+                    <td nowrap=nowrap>
+                        <a ng-click="removeFromList(addressList, $index)"><i class="fa fa-minus-circle"></i></a>
+                    </td>
+                </tr>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 class="inline">Koszt: {{cost}} PLN</h4>
     </center>
+
+    <div class = "inline">
+    <br/><br/><br/>
+        <button ng-if="login" type="submit" class="btn btn-success" ng-click="saveOrder()">Create</button>
+        <button ng-if="!login" href="/login" class="btn btn-success">Login</button>
+    </div>
     <!--<-->
 </div>

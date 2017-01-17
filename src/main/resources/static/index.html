@@ -87,7 +87,7 @@
 
                 <li><a href="#about"><i class="fa fa-info"></i> About</a></li>
                 <li><a href="#menu"><i class="fa fa-book"></i> Menu</a></li>
-                <li><a href="#orderPizza"><i class="fa fa-dollar"></i> Zamów pizze</a></li>
+                <li><a ng-if="login" href="#orderPizza"><i class="fa fa-dollar"></i> Zamów pizze</a></li>
                 <li ng-if="!email"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                       aria-expanded="false">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -113,6 +113,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="#userSettings">Ustawienia</a></li>
                         <li><a href="#userAddress">Adress</a></li>
+                        <li><a ng-if="login" href="#userOrders">Moje zamówienia</a></li>
                         <li><a href="/logout" ng-click="removeUserFromLocalStorage()">Logout</a></li>
                     </ul>
                 </li>

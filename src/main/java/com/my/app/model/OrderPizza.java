@@ -17,7 +17,10 @@ public class OrderPizza {
     private Long order_id;
     @ManyToOne
     private Adress adress;
-    @OneToMany
+    @ManyToMany()
+    @JoinTable(name="ORDERPIZZA_PIZZA",
+            joinColumns={@JoinColumn(name="ORDER_ID")},
+            inverseJoinColumns={@JoinColumn(name="PIZZA_ID")})
     private List<Pizza> pizzaList;
     private Double price;
     private Date date;
@@ -73,5 +76,17 @@ public class OrderPizza {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderPizza{" +
+                "order_id=" + order_id +
+                ", adress=" + adress +
+                ", pizzaList=" + pizzaList.get(0).getName() +
+                ", price=" + price +
+                ", date=" + date +
+                ", user=" + user +
+                '}';
     }
 }

@@ -1,12 +1,16 @@
 /**
  * Created by Marcin on 30/12/2016.
  */
-angular.module('nikoApp').controller('OrderController', function ($scope, $resource, $http) {
+angular.module('nikoApp').controller('OrderController', function ($scope, $resource, $http, $localStorage) {
     $scope.message = 'Hello from OrderController';
     $scope.menuMessage = ''
     $scope.allInd;
     $scope.pizza;
     $scope.pizzaList = [];
+    $scope.addressList = [];
+    $scope.Address;
+    $scope.userOrders;
+    $scope.login = $localStorage.login;
     // $scope.selected;
     var defautCost = 0;
     $scope.cost = defautCost;
@@ -26,6 +30,30 @@ angular.module('nikoApp').controller('OrderController', function ($scope, $resou
     };
     loadAllPizzaFromDb();
 
+    var loadAllUserOrdersFromDb = function () {
+        var Pizzas = $resource('api/order/all', {}, {
+            query: {method: 'get', isArray: true, canellable: true}
+        });
+        //alert("laduje zamowienia")
+        Pizzas.query(function (response) {
+            $scope.userOrders = response;
+        });
+    };
+    loadAllUserOrdersFromDb();
+
+
+    var loadAllAddressFromDb = function () {
+        var Address = $resource('api/address/user/all', {}, {
+            query: {method: 'get', isArray: true, canellable: true}
+        });
+
+        Address.query(function (response) {
+            //alert(response);
+            $scope.Address = response;
+        });
+    };
+    loadAllAddressFromDb();
+
     // $scope.costOfPizza = function () {
     //     //var pizzaList = $scope.selected;
     //     $scope.cost = 0;
@@ -44,7 +72,7 @@ angular.module('nikoApp').controller('OrderController', function ($scope, $resou
 
     var calculateCost = function(){
         if($scope.pizzaList != null){
-            $scope.cost = 0;
+            $scope.cost = defautCost;
             for (var i = 0; i < $scope.pizzaList.length; i++){
                 $scope.cost += $scope.pizzaList[i].price;
             }
@@ -53,33 +81,35 @@ angular.module('nikoApp').controller('OrderController', function ($scope, $resou
         }
     }
 
-    $scope.addToList = function(pizza){
-        $scope.pizzaList.push(pizza);
+    $scope.addToList = function(list, pizza){
+        list.push(pizza);
 
         calculateCost();
     }
 
-    $scope.removeFromList = function(int){
-        $scope.pizzaList.splice(int, 1);
+    $scope.removeFromList = function(list, int){
+        list.splice(int, 1);
 
         calculateCost();
     }
 
-    $scope.savePizza = function () {
-        var name = $scope.pizzaName;
-        var ingredientList = $scope.selectedItems;
-        var price = $scope.pizzaPrice;
-        alert($scope.ingredientList + " " + ingredientList)
+    $scope.saveOrder = function () {
+        var address = $scope.addressList[0];
+        alert(address);
+        var pizzaList = $scope.pizzaList;
+        var price = $scope.cost;
+        var date = new Date();
 
         var userObject = {
-            name: name,
-            ingredient: ingredientList,
-            price: price
+            adress: address,
+            pizzaList: pizzaList,
+            price: $scope.cost,
+            date: date
         };
 
-        $http.post('/api/pizza/add', userObject).success(function () { //wywloujemy
-            //alert('Thanks');
-            loadAllPizzaFromDb();
+        $http.post('/api/order/add', userObject).success(function () { //wywloujemy
+            alert('Thanks');
+            //loadAllPizzaFromDb();
         }).error(function () {
             alert('We have problem!');
         })
