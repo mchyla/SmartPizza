@@ -1,70 +1,137 @@
-<div class="container">
-    <br/>
-    <br/>
-    <h1>People</h1>
-
-    <h3>{{message}}</h3>
-
-    <div class="col-md-4">
+<div>
+    <div class="header-content-inner">
+        <br/><br/><br/>
         <br/>
-        <form>
-            <div class="form-group">
-                <h2>Add pizza</h2>
-            </div>
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <div>
-                    <input type="text" class="form-control" id="loginOfUser" placeholder="Name"
+        <br/>
+        <h1>People</h1>
+
+        <div class="container-fluid bg-primary">
+
+            <div class="col-md-1">
+                <div class="row">
+                    <div class="inline"><h4>Nazwa:</h4></div>
+
+                    <input type="text" class="form-control inline" id="loginOfUser" placeholder="Name"
                            ng-model="pizzaName"/>
-                </div>
 
-                <label for="name">Ingredents:</label>
-                <div>
-                    <select multiple class="form-control" id="ingredientList"
-                            ng-options="p.name for p in allInd |orderBy:'name'" ng-model="selectedItems">
-                    </select>
                 </div>
+                <br/>
+                <div class="row">
+                    <div class="inline"><h4>Price:</h4></div>
 
-                <label for="name">Price:</label>
-                <div>
-                    <input type="text" class="form-control" id="priceOfPizza" placeholder="Price"
+                    <input type="text" class="form-control inline" id="loginOfUser" placeholder="Price"
                            ng-model="pizzaPrice"/>
+
                 </div>
             </div>
-            <div class="form-group">
+
+
+            <!--    <h3>{{message}}</h3>
+                <label for="name">Pizza:</label>
                 <div>
-                    <button type="submit" class="btn btn-success" ng-click="savePizza()">Create</button>
-                </div>
+                    <select multiple class="form-control" id="pizzaList"
+                            ng-options="p as p.name for p in pizza |orderBy:'name'" ng-model="selected" ng-change="costOfPizza()">
+                    </select>
+                </div>-->
+            <div class="col-md-2">
+                <center>
+                    <div class="inline">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <center>Składnik</center>
+                                </th>
+                                <th/>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="p in tempInd track by $index">
+
+                                <td>{{ p.name }}</td>
+                                <td nowrap=nowrap>
+                                    <a ng-click="addToList(selectedInd, p); removeFromList(tempInd, $index)"><i
+                                            class="fa fa-plus-circle"></i></a>
+                                </td>
+                            </tr>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </center>
             </div>
-        </form>
-    </div>
-    <br/>
-    <table class="table table-hover">
-        <thead>
-        <tr>
 
-            <th>Name</th>
-            <th>Ingredients</th>
-            <th>Price</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="p in pizza |orderBy:'name'">
+            <div class="col-md-3">
+                <center>
+                    <div class="inline"><h4>Aktualna Pizza:</h4></div>
 
-            <td>{{ p.name }}</td>
-            <td>
+                    <div class="inline">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <center>Składnik</center>
+                                </th>
+                                <th/>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="p in selectedInd track by $index">
+
+                                <td>{{ p.name }}</td>
+                                <td nowrap=nowrap>
+                                    <a ng-click="removeFromList(selectedInd, $index); addToList(tempInd, p)"><i
+                                            class="fa fa-minus-circle"></i></a>
+                                </td>
+                            </tr>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div>
+                        <br/><br/><br/>
+                        <button ng-if="login" type="submit" class="btn btn-success" ng-click="savePizza()">Create
+                        </button>
+                        <button ng-if="!login" href="/login" class="btn btn-success">Login</button>
+                    </div>
+
+                </center>
+            </div>
+            <div class="col-md-5">
+                <center>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+
+                            <th>Name</th>
+                            <th>Ingredients</th>
+                            <th>Price</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="p in pizza |orderBy:'name'">
+
+                            <td>{{ p.name }}</td>
+                            <td>
                 <span ng-repeat="ingredient in p.ingredient">
                 {{ingredient.name}}
                 </span>
-            </td>
-            <td>{{ p.price}}</td>
-            <td nowrap=nowrap>
-                <a ng-click = "loadData(p)"><i class="glyphicon glyphicon-pencil"></i></a>
-                <a ng-click = "deletePizza(p)"><i class="glyphicon glyphicon-remove"></i></a>
-            </td>
-        </tr>
-        </tr>
-        </tbody>
-    </table>
-
+                            </td>
+                            <td>{{ p.price}}</td>
+                            <td nowrap=nowrap>
+                                <a ng-click="loadData(p)"><i class="glyphicon glyphicon-pencil"></i></a>
+                                <a ng-click="deletePizza(p)"><i class="glyphicon glyphicon-remove"></i></a>
+                            </td>
+                        </tr>
+                        </tr>
+                        </tbody>
+                    </table>
+                </center>
+            </div>
+            <!--<-->
+        </div>
+    </div>
+</div>
 </div>

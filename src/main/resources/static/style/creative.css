@@ -9,6 +9,13 @@ body {
   width: 100%;
 }
 
+.style-4 input[type="text"] {
+  padding: 10px;
+  border: none;
+  border-bottom: solid 2px #c9c9c9;
+  transition: border 0.3s;
+}
+
 .mainview-animation.ng-enter {
   -webkit-transition: .3s linear all; /* Safari/Chrome */
   -moz-transition: .3s linear all; /* Firefox */

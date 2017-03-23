@@ -25,7 +25,7 @@ angular.module('nikoApp').controller('OrderController', function ($scope, $resou
         });
 
         Pizzas.query(function (response) {
-            $scope.pizza = response; // widoku będziesz używał teraz people
+            $scope.pizza = response;
         });
     };
     loadAllPizzaFromDb();

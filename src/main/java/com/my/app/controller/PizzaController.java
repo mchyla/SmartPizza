@@ -1,12 +1,20 @@
 package com.my.app.controller;
 
 import com.my.app.model.Ingredient;
+import com.my.app.model.OrderPizza;
 import com.my.app.model.Pizza;
+import com.my.app.model.User;
+import com.my.app.repository.IngredientRepository;
 import com.my.app.repository.PizzaRepository;
+import com.my.app.utils.PizzaUtils;
+import org.hibernate.id.IncrementGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +28,9 @@ public class PizzaController {
 
     @Autowired
     private PizzaRepository pizzaRepository;
+
+    @Autowired
+    private IngredientRepository ingredientRepository;
 
     @PostMapping("/add")
     public ResponseEntity<?> savePizza(@RequestBody Pizza pizza) {
@@ -71,4 +82,5 @@ public class PizzaController {
        int i =  pizzaRepository.removeByPizzaid(id);
         System.out.println(i);
     }
+
 }

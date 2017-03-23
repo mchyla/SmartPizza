@@ -5,8 +5,9 @@ angular.module('nikoApp').controller('PizzaAddCtrl', function ($scope, $resource
     $scope.message = 'Hello from PizzaController';
     $scope.menuMessage = ''
     $scope.allInd;
+    $scope.tempInd;
     $scope.pizza;
-    $scope.selectedItems;
+    $scope.selectedInd = [];
 
     //$resource("../rest/api"}).get(); return an object.
     //$resource("../rest/api").query(); return an array.
@@ -16,10 +17,20 @@ angular.module('nikoApp').controller('PizzaAddCtrl', function ($scope, $resource
         });
 
         Users.query(function (response) {
-            $scope.allInd = response; // widoku będziesz używał teraz people
+            $scope.allInd = response;
+            $scope.tempInd = $scope.allInd;
         });
     };
     loadAllPIngredientsFromDb();
+
+    $scope.addToList = function(list, item) {
+        list.push(item);
+    }
+
+    $scope.removeFromList = function(list, int){
+        list.splice(int, 1);
+        console.log(int);
+    }
 
     var loadAllPizzaFromDb = function () {
         var Pizzas = $resource('api/pizza/all', {}, {
@@ -34,9 +45,9 @@ angular.module('nikoApp').controller('PizzaAddCtrl', function ($scope, $resource
 
     $scope.savePizza = function () {
         var name = $scope.pizzaName;
-        var ingredientList = $scope.selectedItems;
+        var ingredientList = $scope.selectedInd;
         var price = $scope.pizzaPrice;
-        alert($scope.ingredientList + " " + ingredientList)
+        console.log($scope.ingredientList + " " + ingredientList)
 
             var userObject = {
                 name: name,
@@ -63,5 +74,9 @@ angular.module('nikoApp').controller('PizzaAddCtrl', function ($scope, $resource
             alert('We have problem!');
         })
     };
+
+    $scope.loadData = function(pizza){
+
+    }
 
 });

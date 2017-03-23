@@ -18,7 +18,7 @@ angular.module('nikoApp').controller('IngredientController', function ($scope, $
     };
     loadAllPIngredientsFromDb();
 
-    //$scope.people = $resource('/person/all', []).get(); //to da undefined bo nie zdazyl jeszcze pobrac
+        //$scope.people = $resource('/person/all', []).get(); //to da undefined bo nie zdazyl jeszcze pobrac
     //scope.cos = dajesz wtedy gdy chcesz mie dostep do czegos w pliku html w widoku i zbindowac na przyklad
     //[{"id":1,"login":"1","password":"1","email":"1@o2.pl","phones":0}]
     //Zapis osoby do bazy danych
@@ -26,10 +26,12 @@ angular.module('nikoApp').controller('IngredientController', function ($scope, $
         var name = $scope.ingredientName;
         //alert($scope.ingredientName);
         var vege = $scope.ingredientVege;
+        var weight = $scope.ingredientWeight;
 //to patrz jak nawet końska spierolina mi sięwyjebuje
         var userObject = {
             name: name,
-            vege: vege
+            vege: vege,
+            weight: weight
         };
 
         $http.post('/api/ingredient/add',userObject).success(function () { //wywloujemy

@@ -14,6 +14,8 @@ public class Ingredient {
     private Long ingredient_id;
     private String name;
     private boolean vege;
+    @Column(nullable = true)
+    private double weight;
 
     public Ingredient() {
     }
@@ -23,6 +25,11 @@ public class Ingredient {
         this.vege = vege;
     }
 
+    public Ingredient(String name, boolean vege, double weight) {
+        this.name = name;
+        this.vege = vege;
+        this.weight = weight;
+    }
 
     public Long getIngredient_id() {
         return ingredient_id;
@@ -46,5 +53,13 @@ public class Ingredient {
 
     public void setVege(boolean vege) {
         this.vege = vege;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 }

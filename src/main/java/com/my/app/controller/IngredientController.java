@@ -30,7 +30,6 @@ public class IngredientController {
         return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
     }
 
-
     @GetMapping("/all")
     public ResponseEntity<?> findAll(){
         List<Ingredient> ingredientList = ingredientRepository.findAll();

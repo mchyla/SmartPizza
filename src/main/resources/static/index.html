@@ -85,17 +85,17 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" aria-expanded="false">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#home"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#home" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><i class="fa fa-home"></i> Home</a></li>
 
-                <li><a href="#about"><i class="fa fa-info"></i> About</a></li>
-                <li><a href="#menu"><i class="fa fa-book"></i> Menu</a></li>
-                <li><a ng-if="login" href="#orderPizza"><i class="fa fa-dollar"></i> Zamów pizze</a></li>
+                <li><a href="#about" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><i class="fa fa-info"></i> About</a></li>
+                <li><a href="#menu"  data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><i class="fa fa-book"></i> Menu</a></li>
+                <li><a ng-if="login" href="#orderPizza" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><i class="fa fa-dollar"></i> Zamów pizze</a></li>
                 <li ng-if="!email"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                      aria-expanded="false">Dropdown <span class="caret"></span></a>
+                                      aria-expanded="false" data-toggle="collapse">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu">
 
-                        <li><a href="/login">Login</a></li>
-                        <li><a href="#register">Register</a></li>
+                        <li><a href="/login" data-target="#bs-example-navbar-collapse-1">Login</a></li>
+                        <li><a href="#register" data-target="#bs-example-navbar-collapse-1">Register</a></li>
                     </ul>
                 </li>
 
@@ -103,9 +103,9 @@
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Administracja<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#addIngredient">Dodaj składnik</a></li>
-                        <li><a href="#addPizza">Dodaj pizze</a></li>
-                        <li><a href="#user">People</a></li>
+                        <li><a href="#addIngredient" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Dodaj składnik</a></li>
+                        <li><a href="#addPizza" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Dodaj pizze</a></li>
+                        <li><a href="#user" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">People</a></li>
                     </ul>
                 </li>
 
@@ -113,9 +113,9 @@
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false"><i class="fa fa-user"></i> {{login}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#userSettings">Ustawienia</a></li>
-                        <li><a href="#userAddress">Adress</a></li>
-                        <li><a ng-if="login" href="#userOrders">Moje zamówienia</a></li>
+                        <li><a href="#userSettings" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Ustawienia</a></li>
+                        <li><a href="#userAddress" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Adress</a></li>
+                        <li><a ng-if="login" href="#userOrders" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Moje zamówienia</a></li>
                         <li><a href="/logout" ng-click="removeUserFromLocalStorage()">Logout</a></li>
                     </ul>
                 </li>
