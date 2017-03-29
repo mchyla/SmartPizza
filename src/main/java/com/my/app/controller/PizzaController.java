@@ -7,6 +7,7 @@ import com.my.app.model.User;
 import com.my.app.repository.IngredientRepository;
 import com.my.app.repository.PizzaRepository;
 import com.my.app.utils.PizzaUtils;
+import org.apache.log4j.Logger;
 import org.hibernate.id.IncrementGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,8 @@ public class PizzaController {
     @Autowired
     private IngredientRepository ingredientRepository;
 
+    Logger log = Logger.getLogger(this.getClass());
+
     @PostMapping("/add")
     public ResponseEntity<?> savePizza(@RequestBody Pizza pizza) {
         try {
@@ -39,6 +42,7 @@ public class PizzaController {
             if (u == null) {
                 pizzaRepository.save(pizza);
                 if (pizza.getPizzaid() != null) {
+                    log.info("savePizza: " + pizza.getName());
                     return ResponseEntity.ok(pizza);
                 }
             } else {
@@ -46,6 +50,7 @@ public class PizzaController {
                 u.setIngredient(pizza.getIngredient());
                 pizzaRepository.save(u);
                 if (u.getPizzaid() != null) {
+                    log.info("save(Update)Pizza: " + pizza.getName());
                     return ResponseEntity.ok(u);
                 }
             }
@@ -60,27 +65,55 @@ public class PizzaController {
     //@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @GetMapping("/all")
     public ResponseEntity<?> findAll() {
-        List<Pizza> people = pizzaRepository.findAll();
-        if (people.size() > 0) {
-            return ResponseEntity.ok(people);
-        }
-        return new ResponseEntity<Pizza>(HttpStatus.NO_CONTENT);
+        try {
+            List<Pizza> pizzas = pizzaRepository.findAll();
+            if (pizzas.size() > 0) {
+                log.info("findAll: " + pizzas.stream().count());
+                return ResponseEntity.ok(pizzas);
+            } else {
+                return new ResponseEntity<Pizza>(HttpStatus.NO_CONTENT);
+            }
+        }catch (Exception e){
+        log.error(e.getMessage());
+        e.printStackTrace();
+        return null;
+    }
+
     }
 
     @GetMapping("/{name}/ingredient")
     public List<Ingredient> getPizzaIngredient(@PathVariable("name") String name) {
-        return pizzaRepository.findOneByName(name).getIngredient();
+        try {
+            log.info("getPizzaIngredient: " + name + " " + pizzaRepository.findOneByName(name).getIngredient());
+            return pizzaRepository.findOneByName(name).getIngredient();
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @GetMapping("/{name}")
     public Pizza getPizzaByName(@PathVariable("name") String name) {
-        return pizzaRepository.findOneByName(name);
+        try {
+            log.info("getPizzaByName: " + name);
+            return pizzaRepository.findOneByName(name);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @DeleteMapping("/remove/{id}")
     public void removePizza(@PathVariable("id") Long id) { //to ("id") mozna usnac bo zmienna nazywa sie tak samo
-       int i =  pizzaRepository.removeByPizzaid(id);
-        System.out.println(i);
+        try {
+            int i = pizzaRepository.removeByPizzaid(id);
+            log.info("removePizza: id=" + i);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            e.printStackTrace();
+        }
     }
 
 }

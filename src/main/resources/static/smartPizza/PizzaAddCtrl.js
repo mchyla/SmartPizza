@@ -52,7 +52,8 @@ angular.module('nikoApp').controller('PizzaAddCtrl', function ($scope, $resource
             var userObject = {
                 name: name,
                 ingredient: ingredientList,
-                price: price
+                price: price,
+                dec: 0
             };
 
             $http.post('/api/pizza/add', userObject).success(function () { //wywloujemy
@@ -67,11 +68,12 @@ angular.module('nikoApp').controller('PizzaAddCtrl', function ($scope, $resource
     $scope.deletePizza = function (pizza) {
         var id = pizza.pizzaid;
         alert(id);
-        $http.delete('/api/pizza/remove/' + id).success(function () { //wywloujemy
+        $http.delete('/api/pizza/remove/' + id).success(function (response) {
             //alert('Thanks');
             loadAllPizzaFromDb();
-        }).error(function () {
-            alert('We have problem!');
+        }).error(function (response) {
+            alert("Cannot delete or update a parent row: a foreign key constraint fails!")
+           // alert(response.status);
         })
     };
 

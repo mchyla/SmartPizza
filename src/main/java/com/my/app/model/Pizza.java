@@ -22,6 +22,8 @@ public class Pizza {
             inverseJoinColumns={@JoinColumn(name="INGREDIENT_ID")})
     private List<Ingredient> ingredient;
 
+    private int decision;
+
     private double price;
 
 
@@ -64,5 +66,13 @@ public class Pizza {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getDec() {
+        return decision;
+    }
+
+    public void setDec(int dec) {
+        this.decision = dec;
     }
 }

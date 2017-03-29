@@ -14,6 +14,6 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<OrderPizza, Long> {
 
     List<OrderPizza> findByUser(User user);
-    List<OrderPizza> findByDate(Date date);
+    List<OrderPizza> findByDateBetween(Date date, Date date2);
 
 }

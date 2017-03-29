@@ -20,6 +20,7 @@ public interface PizzaRepository extends JpaRepository<Pizza, Long> {
     @Transactional
     int removeByPizzaid(Long id);
     Pizza findByPizzaid(Long id);
+
 /*
     @Modifying
     @Transactional
