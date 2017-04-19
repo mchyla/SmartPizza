@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.codehaus.groovy.runtime.powerassert.SourceText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.thymeleaf.expression.Lists;
 import sun.rmi.runtime.Log;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -113,38 +114,61 @@ public class PizzaUtils {
 
     public void checkDistanceFromTemplate(){
         Logger log = Logger.getLogger(PizzaUtils.class);
-        String wiejskiGangster = "001001010000000000000100000001000100000100";
+/*        String wiejskiGangster = "001001010000000000000100000001000100000100";
         String kowalSwinke = "001001000000000000000000100001000100000000";
-        String smieszna = "000001000000000000100000100001000110000000";
+        //String smieszna = "000001000000000000100000100001000110000000";
         String ryba = "000000000000100010000000000001000100000010";
-        String wege = "000001000000010001000001110001000100000000";
+        String wege = "000001000000010001000001110001000100000000"*/;
+
+        String wiejskiGangster  = "000000000000000100000010000000000000000010";
+        String kowalSwinke      = "001000000000000010001000100001000000100000";
+                                                                                    //String smieszna         = "000001000000000000100000100001000110000000";
+        String ryba             = "000000110000100010000000110001000100000010";
+        String wege             = "000001000000010001000001110001000100000000";
+
+
+
+
         //String wiejskiGangster = "001001010000000000000100000001000100000100";
         //String wiejskiGangster = "001001010000000000000100000001000100000100";
         char[] wiejskiGangsterCharrArray = wiejskiGangster.toCharArray();
-        //char[] kowalSwinkeCharrArray = kowalSwinke.toCharArray();
-        char[] smiesnaCharrArray = smieszna.toCharArray();
+        char[] kowalSwinkeCharrArray = kowalSwinke.toCharArray();
+        //char[] smiesnaCharrArray = smieszna.toCharArray();
         char[] rybaCharrArray = ryba.toCharArray();
         char[] wegeCharrArray = wege.toCharArray();
 
 
         List<Integer> wiejskiGangsterBinaryzedIngredientList = charrArray2IntegerList(wiejskiGangsterCharrArray);
-        //List<Integer> kowalSwinkeBinaryzedIngredientList = charrArray2IntegerList(kowalSwinkeCharrArray);
-        List<Integer> smiesznaBinaryzedIngredientList = charrArray2IntegerList(smiesnaCharrArray);
+        List<Integer> kowalSwinkeBinaryzedIngredientList = charrArray2IntegerList(kowalSwinkeCharrArray);
+        //List<Integer> smiesznaBinaryzedIngredientList = charrArray2IntegerList(smiesnaCharrArray);
         List<Integer> rybaBinaryzedIngredientList = charrArray2IntegerList(rybaCharrArray);
         List<Integer> wegeBinaryzedIngredientList = charrArray2IntegerList(wegeCharrArray);
 
         List<Pizza> pizzas = pizzaRepository.findAll();
 
+      //  List<List<Double>> listOfAllResultsOfAllPizzas = new ArrayList<>();
 
-        for(int i = 0; i < pizzas.size(); i++){
-            Pizza pizza = pizzas.get(i);
-            log.info("The pizza analysis started: "+pizza.getName());
-            List<Double> listOfResults = new ArrayList<>();
-            listOfResults.add(checkDistance(binaryzeIngredients(pizza), wiejskiGangsterBinaryzedIngredientList));
-            //listOfResults.add(checkDistance(binaryzeIngredients(pizza), kowalSwinkeBinaryzedIngredientList));
-            listOfResults.add(checkDistance(binaryzeIngredients(pizza), smiesznaBinaryzedIngredientList));
-            listOfResults.add(checkDistance(binaryzeIngredients(pizza), rybaBinaryzedIngredientList));
-            listOfResults.add(checkDistance(binaryzeIngredients(pizza), wegeBinaryzedIngredientList));
+        List<Integer>  newDec1List = new ArrayList<>(); //= charrArray2IntegerList("001001010000000000000100000001000100000100".toCharArray());
+        List<Integer>  newDec2List = new ArrayList<>(); //= charrArray2IntegerList("000001000000000000100000100001000110000000".toCharArray());
+        List<Integer>  newDec3List = new ArrayList<>(); //= charrArray2IntegerList("000001000000000000100000100001000110000000".toCharArray());
+        List<Integer>  newDec4List = new ArrayList<>(); //= charrArray2IntegerList("000000000000100010000000000001000100000010".toCharArray());
+       // List<Integer>  newDec5List = new ArrayList<>(); //= charrArray2IntegerList("000001000000010001000001110001000100000000".toCharArray());
+
+        double distanceFromTemplate1 = 10.0;
+        double distanceFromTemplate2 =  10.0;
+        double distanceFromTemplate3 =  10.0;
+        double distanceFromTemplate4 =  10.0;
+
+        //1st loop of algorithm
+            for (int i = 0; i < pizzas.size(); i++) {
+                Pizza pizza = pizzas.get(i);
+                log.info("The pizza analysis started: "+pizza.getName());
+                List<Double> listOfResults = new ArrayList<>();
+                listOfResults.add(checkDistance(binaryzeIngredients(pizza), wiejskiGangsterBinaryzedIngredientList));
+                listOfResults.add(checkDistance(binaryzeIngredients(pizza), kowalSwinkeBinaryzedIngredientList));
+                //listOfResults.add(checkDistance(binaryzeIngredients(pizza), smiesznaBinaryzedIngredientList));
+                listOfResults.add(checkDistance(binaryzeIngredients(pizza), rybaBinaryzedIngredientList));
+                listOfResults.add(checkDistance(binaryzeIngredients(pizza), wegeBinaryzedIngredientList));
 
 
                log.info(new Date()
@@ -153,32 +177,139 @@ public class PizzaUtils {
                         + " [2dec]: " + round(listOfResults.get(1), 2)
                         + " [3dec]: " + round(listOfResults.get(2), 2)
                         + " [4dec]: " + round(listOfResults.get(3), 2));
-                        //+ " [5dec]: " + round(listOfResults.get(4), 2));
+                //+ " [5dec]: " + round(listOfResults.get(4), 2));
 
 
 
-            log.info("Min distance from templates: "+round(listOfResults.stream().reduce(Double::min).get(),2));
-            log.info("Maxdistance from templates: "+round(listOfResults.stream().reduce(Double::max).get(),2));
-            log.info("Index of minimal distance: "+ listOfResults.indexOf(Collections.min(listOfResults)));
-            int dec = 1+listOfResults.indexOf(Collections.min(listOfResults));
-            log.info("Classification result: "+dec);
-            log.info("Pizza analysis finished! ");
+                log.info("Min distance from templates: "+round(listOfResults.stream().reduce(Double::min).get(),2));
 
-            log.info("Set decision for:" + pizza.getName());
-            pizza.setDec(dec);
-            pizzaRepository.save(pizza);
-            log.info("Successufful: " + pizza.getName() + " now have decision " + dec);
+                log.info("Maxdistance from templates: "+round(listOfResults.stream().reduce(Double::max).get(),2));
+                log.info("Index of minimal distance: "+ listOfResults.indexOf(Collections.min(listOfResults)));
+                int dec = 1 + listOfResults.indexOf(Collections.min(listOfResults));
 
-/*            listOfResults.stream().forEach(distance -> log.info(new Date()
+
+                log.info("Classification result: "+dec);
+                log.info("Pizza analysis finished! ");
+
+                log.info("Set decision for:" + pizza.getName());
+                pizza.setDec(dec);
+                pizzaRepository.save(pizza);
+                log.info("Successufful: " + pizza.getName() + " now have decision " + dec);
+
+            listOfResults.stream().forEach(distance -> log.info(new Date()
                     + " [" + pizza.getName() + "] [1dec]: " + round(distance, 2)
                     + " [2dec] " + round(distance, 2)
                     + " [3dec] " + round(distance, 2)
                     + " [4dec] " + round(distance, 2)
-                    + " [5dec] " + round(distance, 2)));*/
+                    + " [5dec] " + round(distance, 2)));
+
+                switch (dec) {
+                    case 1:
+                        if (listOfResults.get(0) < distanceFromTemplate1) {
+                            newDec1List = binaryzeIngredients(pizza);
+                                 log.info("New center for class 1 found!");
+                        }
+                        break;
+                    case 2:
+                        if (listOfResults.get(1) < distanceFromTemplate2) {
+                            newDec2List = binaryzeIngredients(pizza);
+                            log.info("New center for class 2 found!");
+                        }
+                        break;
+                    case 3:
+                        if (listOfResults.get(2) < distanceFromTemplate3) {
+                            newDec3List = binaryzeIngredients(pizza);
+                            log.info("New center for class 3 found!");
+                        }
+                        break;
+                    case 4:
+                        if (listOfResults.get(3) < distanceFromTemplate4) {
+                            newDec4List = binaryzeIngredients(pizza);
+                            log.info("New center for class 4 found!");
+                        }
+                        break;
+                }
+
+            }
+
+        //next loops
+        for(int x = 0; x < 11; x++) {
+            for (int i = 0; i < pizzas.size(); i++) {
+                Pizza pizza = pizzas.get(i);
+                log.info("The pizza analysis started: "+pizza.getName());
+                List<Double> listOfResults = new ArrayList<>();
+                if(newDec1List.size()>0)listOfResults.add(checkDistance(binaryzeIngredients(pizza), newDec1List));
+                //listOfResults.add(checkDistance(binaryzeIngredients(pizza), kowalSwinkeBinaryzedIngredientList));
+                if(newDec2List.size()>0)listOfResults.add(checkDistance(binaryzeIngredients(pizza), newDec2List));
+                if(newDec3List.size()>0)listOfResults.add(checkDistance(binaryzeIngredients(pizza), newDec3List));
+                if(newDec4List.size()>0)listOfResults.add(checkDistance(binaryzeIngredients(pizza), newDec4List));
 
 
+                int dec = 1 + listOfResults.indexOf(Collections.min(listOfResults));
 
+                pizza.setDec(dec);
+                pizzaRepository.save(pizza);
+                log.info("Successufful: " + pizza.getName() + " now have decision " + dec);
+                switch (dec) {
+                    case 1:
+                        if (listOfResults.get(0) < distanceFromTemplate1) {
+                            newDec1List = binaryzeIngredients(pizza);
+                          //  log.info("New center for class 1 found!");
+                        }
+                        break;
+                    case 2:
+                        if (listOfResults.get(1) < distanceFromTemplate2) {
+                            newDec2List = binaryzeIngredients(pizza);
+                           // log.info("New center for class 2 found!");
+                        }
+                        break;
+                    case 3:
+                        if (listOfResults.get(2) < distanceFromTemplate3) {
+                            newDec3List = binaryzeIngredients(pizza);
+                           // log.info("New center for class 3 found!");
+                        }
+                        break;
+                    case 4:
+                        if (listOfResults.get(3) < distanceFromTemplate4) {
+                            newDec4List = binaryzeIngredients(pizza);
+                           // log.info("New center for class 4 found!");
+                        }
+                        break;
+/*                case 5:
+                    if(listOfResults.get(4) < distanceFromTemplate4){
+                        newDec4List = binaryzeIngredients(pizza);
+                        System.out.println(5);
+                    }
+                    break;*/
+                }
+            }
         }
+
+        log.info(newDec1List.toString().replace(", ", ""));
+        log.info(newDec2List.toString().replace(", ", ""));
+        log.info(newDec3List.toString().replace(", ", ""));
+        log.info(newDec4List.toString().replace(", ", ""));
+
+      /*  for(int i = 0 ; i < newDec1List.size(); i++){
+            System.out.print(newDec1List.get(i));
+        }
+        System.out.println();
+        for(int i = 0 ; i < newDec2List.size(); i++){
+            System.out.print(newDec2List.get(i));
+        }
+        System.out.println();
+
+        for(int i = 0 ; i < newDec3List.size(); i++){
+            System.out.print(newDec3List.get(i));
+        }
+        System.out.println();
+
+        for(int i = 0 ; i < newDec4List.size(); i++){
+            System.out.print(newDec4List.get(i));
+        }
+            System.out.println();
+            System.out.println();
+            System.out.println();*/
 
         //return Math.min(Math.min(Math.min(Math.min(distance))))
     }
@@ -235,6 +366,7 @@ public class PizzaUtils {
 
         return binaryList;
     }
+
 
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
