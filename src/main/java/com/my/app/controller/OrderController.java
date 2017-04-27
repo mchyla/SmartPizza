@@ -101,7 +101,7 @@ public class OrderController {
             List<OrderPizza> listOfUserOrders = returnUserOrders();
             //TODO: Change this to variable from last week to now or smth
             Date date = new Date(2017-1900,02,30,00,34,00);
-            Date edate = new Date(2017-1900,02,30,00,36,00);
+            Date edate = new Date(2017-1900,10,30,00,36,00);
             List<OrderPizza> dateList = orderRepository.findByDateBetween(date, edate);
 
             //returnUserOrdersFromStartDateToEndDate(date, edate);
@@ -136,18 +136,39 @@ public class OrderController {
             log.info("Favorite class: " + favoriteClass);
 
             log.info("Pizzas to suggest: ");
-            for (int i = 0; i < pizzaToCoupon.size(); i++){
-                log.info(i + " " + pizzaToCoupon.get(i).getName());
-            }
 
-            return new ResponseEntity<Pizza>(HttpStatus.OK);
+            if(pizzaToCoupon.size() >0) {
+               // for (int i = 0; i < pizzaToCoupon.size(); i++) {
+                log.info(pizzaToCoupon.stream()
+                        .sorted((s1, s2) -> Double.compare(s2.getPrice(), s1.getPrice()))
+                        .collect(Collectors.toList()).get(0).getName());
+               // }
+            } else {
+
+                List<Integer> decisionList = new ArrayList<>();
+                decisionList.add(1);
+                decisionList.add(2);
+                decisionList.add(3);
+                decisionList.add(4);
+
+                decisionList.remove(favoriteClass-1);
+
+                int secondFavDec = pizzaUtils.checkDistanceForNewOne(decisionList, returnUserOrders());
+
+                List<Pizza> listOfSecondFavoriteClassPizzas = pizzaRepository.findByDecision(secondFavDec)
+                        .stream().sorted((s1, s2) -> Double.compare(s2.getPrice(), s1.getPrice()))
+                        .collect(Collectors.toList());
+
+                log.info("Pizzas to suggest: " + listOfSecondFavoriteClassPizzas.get(0).getName() + " " +
+                        listOfSecondFavoriteClassPizzas.get(0).getPrice());
+        }
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<Pizza>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
     }
-
 
     @GetMapping("/test2")
     public ResponseEntity<?> analysePizzas() {
@@ -187,13 +208,14 @@ public class OrderController {
     public static int getUserFavoritePizza(List<Pizza> allBoughtPizzas, Map<Pizza, Long> counts) {
 
         Set<Long> values = new HashSet<Long>(counts.values());
+        //System.out.println(values);
         boolean isUnique = values.size() == 1;
 
         if (isUnique == true) {
             Random generator = new Random();
             int i = generator.nextInt(counts.size());
-            log.info("Count of pizzas in the order are the same: get random favorite pizza -> "+ allBoughtPizzas.get(i).getDec());
-            log.info("Generated random value is: "+i);
+            //log.info("Count of pizzas in the order are the same: get random favorite pizza -> "+ allBoughtPizzas.get(i).getDec());
+            //log.info("Generated random value is: "+i);
             return  allBoughtPizzas.get(i).getDec();
         } else {
 
@@ -208,7 +230,7 @@ public class OrderController {
                 }
             }
 
-            log.info("Favorite pizza class is: " +favoritePizza.getDec());
+            //log.info("Favorite pizza class is: " +favoritePizza.getDec());
             return favoritePizza.getDec();
         }
 
