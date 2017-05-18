@@ -52,7 +52,7 @@ public class Simulator {
     @RequestMapping("/start")
     public void simulate() {
 
-        int howMuchClients = 100;
+        int howMuchClients = 1000;
         int howMuchWeeks = 52;//12; //3months //52 - year
         int howMuchPizzaInWeek = 0;
         List<Pizza> pizzaAllList = pizzaRepository.findAll();
