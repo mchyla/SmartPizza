@@ -31,14 +31,12 @@ angular.module('nikoApp').controller('AddressController', function ($scope, $res
             flatNumber: $scope.address.flatNumberOfAddress
         };
 
-        alert($scope.address.cityOfAddress);
-
         AddressService.addAddress(addressObject).then(function (response) {
             //alert('Thanks');
             if (response.status == 200) {
                 loadAllAddressFromDb();
             } else {
-                alert('We have problem!');
+
             }
         });
     };

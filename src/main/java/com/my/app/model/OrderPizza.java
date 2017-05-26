@@ -1,7 +1,5 @@
 package com.my.app.model;
 
-import org.apache.catalina.filters.AddDefaultCharsetFilter;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;

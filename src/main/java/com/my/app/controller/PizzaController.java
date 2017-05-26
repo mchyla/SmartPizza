@@ -1,21 +1,13 @@
 package com.my.app.controller;
 
 import com.my.app.model.Ingredient;
-import com.my.app.model.OrderPizza;
 import com.my.app.model.Pizza;
-import com.my.app.model.User;
 import com.my.app.repository.IngredientRepository;
 import com.my.app.repository.PizzaRepository;
-import com.my.app.utils.PizzaUtils;
 import org.apache.log4j.Logger;
-import org.hibernate.id.IncrementGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -57,7 +49,7 @@ public class PizzaController {
 
             return new ResponseEntity<Pizza>(HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.error(e.getMessage());
         }
         return new ResponseEntity<Pizza>(HttpStatus.BAD_REQUEST);
     }
@@ -75,7 +67,6 @@ public class PizzaController {
             }
         }catch (Exception e){
         log.error(e.getMessage());
-        e.printStackTrace();
         return null;
     }
 
@@ -88,7 +79,6 @@ public class PizzaController {
             return pizzaRepository.findOneByName(name).getIngredient();
         } catch (Exception e) {
             log.error(e.getMessage());
-            e.printStackTrace();
             return null;
         }
     }
@@ -100,7 +90,6 @@ public class PizzaController {
             return pizzaRepository.findOneByName(name);
         } catch (Exception e) {
             log.error(e.getMessage());
-            e.printStackTrace();
             return null;
         }
     }
@@ -112,7 +101,6 @@ public class PizzaController {
             log.info("removePizza: id=" + i);
         } catch (Exception e) {
             log.error(e.getMessage());
-            e.printStackTrace();
         }
     }
 

@@ -14,7 +14,7 @@ angular.module('nikoApp').controller('SettingsController',
     //
     var loadCurrentUser = function () {
         //debugger;
-        User = $resource('api/user/current.json', {}, {
+        var User = $resource('api/user/current.json', {}, {
             query: {method: 'get', isArray: false, cancellable: true}
         });
 
@@ -64,7 +64,7 @@ angular.module('nikoApp').controller('SettingsController',
                     $rootScope.login = $scope.user.login;
                     loadCurrentUser();
                 } else {
-                    alert("Nie udało sie");
+                    console.log("Nie udało sie");
                 }
             })
     }

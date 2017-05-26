@@ -1,9 +1,5 @@
 package com.my.app.model;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
-
 /**
  * Created by Marcin on 28/12/2016.
  */

@@ -1,7 +1,6 @@
 package com.my.app.repository;
 
 import com.my.app.model.OrderPizza;
-import com.my.app.model.Pizza;
 import com.my.app.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 

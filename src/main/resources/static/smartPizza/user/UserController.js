@@ -39,7 +39,7 @@ angular.module('nikoApp').controller('UserController', function ($scope, $resour
                 if (response.status == 200) {
                     loadAllPUserFromDb();//hmm chyba powinno dzialac
                 } else {
-                    alert('We have problem!');
+                    console.log('We have problem!');
                 }
             });
         };
@@ -55,10 +55,10 @@ angular.module('nikoApp').controller('UserController', function ($scope, $resour
             UserService.addAddress(userObject).then(function (response) {
                 //alert('Thanks');
                 if (response.status == 200) {
-                    alert('Thanks');
+                    console.log('Thanks');
                     $location.path('/home');
                 } else {
-                    alert('We have problem!');
+                    console.log('We have problem!');
                 }
             });
 

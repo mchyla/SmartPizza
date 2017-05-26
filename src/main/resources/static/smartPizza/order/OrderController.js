@@ -95,9 +95,7 @@ angular.module('nikoApp').controller('OrderController', function ($scope, $resou
 
     $scope.saveOrder = function () {
         var address = $scope.addressList[0];
-        alert(address);
         var pizzaList = $scope.pizzaList;
-        var price = $scope.cost;
         var date = new Date();
 
         var userObject = {
@@ -108,22 +106,20 @@ angular.module('nikoApp').controller('OrderController', function ($scope, $resou
         };
 
         $http.post('/api/order/add', userObject).success(function () { //wywloujemy
-            alert('Thanks');
+
             //loadAllPizzaFromDb();
         }).error(function () {
-            alert('We have problem!');
         })
 
     };
 
     $scope.deletePizza = function (pizza) {
         var id = pizza.pizzaid;
-        alert(id);
         $http.delete('/api/pizza/remove/' + id).success(function () { //wywloujemy
             //alert('Thanks');
             loadAllPizzaFromDb();
         }).error(function () {
-            alert('We have problem!');
+
         })
     };
 

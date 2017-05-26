@@ -4,7 +4,6 @@ import com.my.app.model.Adress;
 import com.my.app.model.User;
 import com.my.app.repository.AdressRepository;
 import com.my.app.repository.UserRepository;
-import com.sun.jndi.cosnaming.IiopUrl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

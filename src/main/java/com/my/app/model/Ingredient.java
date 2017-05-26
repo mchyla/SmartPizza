@@ -1,7 +1,9 @@
 package com.my.app.model;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * Created by Marcin on 26/12/2016.
@@ -11,7 +13,7 @@ public class Ingredient {
 
     @Id
     @GeneratedValue
-    private Long ingredient_id;
+    private Long ingredient_id; //no sonar
     private String name;
     private boolean vege;
     @Column(nullable = true)

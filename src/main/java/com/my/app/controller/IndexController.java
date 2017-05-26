@@ -1,6 +1,5 @@
 package com.my.app.controller;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,16 +14,5 @@ public class IndexController {
     public String index(){
         return "redirect:/index.html";
     }
-
-/*    @RequestMapping("/login")
-    public String login(){
-        return "login";
-    }*/
-
-/*    @RequestMapping("/dupa")
-    public String test(){
-        return "test";
-    }*/
-
 
 }

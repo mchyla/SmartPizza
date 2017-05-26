@@ -1,7 +1,6 @@
 package com.my.app.controller;
 
 import com.my.app.model.Ingredient;
-import com.my.app.model.User;
 import com.my.app.repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,15 +26,17 @@ public class IngredientController {
         if (ingredient.getIngredient_id() != null) {
             return ResponseEntity.ok(ingredient);
         }
-        return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/all")
     public ResponseEntity<?> findAll(){
         List<Ingredient> ingredientList = ingredientRepository.findAll();
-        if(ingredientList.size()>0){
+        if(ingredientList.isEmpty()){
+            return new ResponseEntity<Ingredient>(HttpStatus.NO_CONTENT);
+        } else {
             return ResponseEntity.ok(ingredientList);
         }
-        return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+
     }
 }

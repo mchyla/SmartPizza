@@ -60,19 +60,18 @@ angular.module('nikoApp').controller('PizzaAddCtrl', function ($scope, $resource
                 //alert('Thanks');
                 loadAllPizzaFromDb();
             }).error(function () {
-                alert('We have problem!');
+                console.log('We have a problem!')
             })
 
     };
 
     $scope.deletePizza = function (pizza) {
         var id = pizza.pizzaid;
-        alert(id);
         $http.delete('/api/pizza/remove/' + id).success(function (response) {
             //alert('Thanks');
             loadAllPizzaFromDb();
         }).error(function (response) {
-            alert("Cannot delete or update a parent row: a foreign key constraint fails!")
+            console.log("Cannot delete or update a parent row: a foreign key constraint fails!")
            // alert(response.status);
         })
     };

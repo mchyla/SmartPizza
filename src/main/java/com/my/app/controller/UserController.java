@@ -4,12 +4,10 @@ import com.my.app.model.Role;
 import com.my.app.model.User;
 import com.my.app.repository.PersonRepository;
 import com.my.app.repository.UserRepository;
-import org.codehaus.groovy.runtime.powerassert.SourceText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -35,10 +33,8 @@ public class UserController {
         person.setRole(Role.ROLE_USER);
         String password = person.getPassword();
         password = BCrypt.hashpw(password, BCrypt.gensalt());
-        System.out.println(password);
         person.setPassword(password);
         personRepository.save(person);
-        //System.out.println(person.getLogin());
         if (person.getId() != null) {
             return ResponseEntity.ok(person);
         }
@@ -72,7 +68,6 @@ public class UserController {
 
     @PostMapping("/update")
     public void updateUser(@RequestBody User user) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         User currentUser = userRepository.findOne(user.getId());
         if (currentUser != null) {
@@ -82,7 +77,7 @@ public class UserController {
             currentUser.setPhones(user.getPhones());
             userRepository.save(currentUser);
         } else {
-
+            // no user to update
         }
     }
 }

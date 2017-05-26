@@ -38,7 +38,7 @@ angular.module('nikoApp').controller('IngredientController', function ($scope, $
             //alert('Thanks');
             loadAllPIngredientsFromDb();
         }).error(function () {
-            alert('We have problem!');
+
         })
     };
 

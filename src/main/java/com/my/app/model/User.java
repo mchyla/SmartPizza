@@ -1,6 +1,5 @@
 package com.my.app.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -35,6 +34,7 @@ public class User {
     private Role role;
 
     public User() {
+        // simple no parameters constructor
     }
 
 
@@ -107,7 +107,6 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", phones=" + phones +
                 ", adress=" + adress +
