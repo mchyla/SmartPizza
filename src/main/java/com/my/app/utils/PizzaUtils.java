@@ -127,11 +127,11 @@ public class PizzaUtils {
         String wege = "000001000000010001000001110001000100000000"*/
         ;
 
-        String wiejskiGangster = "000000000000000100000010000000000000000010";
-        String kowalSwinke = "001000000000000010001000100001000000100000";
+        String wiejskiGangster = "001001010100000100000100000001000100000100";
+        String kowalSwinke = "001001000000000000000000100001000100000000";
         //String smieszna         = "000001000000000000100000100001000110000000";
-        String ryba = "000000110000100010000000110001000100000010";
-        String wege = "000001000000010001000001110001000100000000";
+        String ryba = "000000000000100000000000000001000000000010";
+        String wege = "000001000000010001000001010000000100000000";
 
 
         //String wiejskiGangster = "001001010000000000000100000001000100000100";
@@ -210,24 +210,28 @@ public class PizzaUtils {
             switch (dec) {
                 case 1:
                     if (listOfResults.get(0) < distanceFromTemplate1) {
+                        distanceFromTemplate1 = listOfResults.get(0);
                         newDec1List = binaryzeIngredients(pizza);
                         log.info("New center for class 1 found!");
                     }
                     break;
                 case 2:
                     if (listOfResults.get(1) < distanceFromTemplate2) {
+                        distanceFromTemplate2 = listOfResults.get(1);
                         newDec2List = binaryzeIngredients(pizza);
                         log.info("New center for class 2 found!");
                     }
                     break;
                 case 3:
                     if (listOfResults.get(2) < distanceFromTemplate3) {
+                        distanceFromTemplate3 = listOfResults.get(2);
                         newDec3List = binaryzeIngredients(pizza);
                         log.info("New center for class 3 found!");
                     }
                     break;
                 case 4:
                     if (listOfResults.get(3) < distanceFromTemplate4) {
+                        distanceFromTemplate4 = listOfResults.get(3);
                         newDec4List = binaryzeIngredients(pizza);
                         log.info("New center for class 4 found!");
                     }
@@ -237,7 +241,7 @@ public class PizzaUtils {
         }
 
         //next loops
-        for (int x = 0; x < 11; x++) {
+        for (int x = 0; x < 50; x++) {
             for (int i = 0; i < pizzas.size(); i++) {
                 Pizza pizza = pizzas.get(i);
                 log.info("The pizza analysis started: " + pizza.getName());
@@ -257,24 +261,28 @@ public class PizzaUtils {
                 switch (dec) {
                     case 1:
                         if (listOfResults.get(0) < distanceFromTemplate1) {
+                            distanceFromTemplate1 = listOfResults.get(0);
                             newDec1List = binaryzeIngredients(pizza);
                             //  log.info("New center for class 1 found!");
                         }
                         break;
                     case 2:
                         if (listOfResults.get(1) < distanceFromTemplate2) {
+                            distanceFromTemplate2 = listOfResults.get(1);
                             newDec2List = binaryzeIngredients(pizza);
                             // log.info("New center for class 2 found!");
                         }
                         break;
                     case 3:
                         if (listOfResults.get(2) < distanceFromTemplate3) {
+                            distanceFromTemplate3 = listOfResults.get(2);
                             newDec3List = binaryzeIngredients(pizza);
                             // log.info("New center for class 3 found!");
                         }
                         break;
                     case 4:
                         if (listOfResults.get(3) < distanceFromTemplate4) {
+                            distanceFromTemplate4 = listOfResults.get(3);
                             newDec4List = binaryzeIngredients(pizza);
                             // log.info("New center for class 4 found!");
                         }

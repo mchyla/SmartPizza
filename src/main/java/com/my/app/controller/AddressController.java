@@ -26,7 +26,7 @@ public class AddressController {
     private UserRepository userRepository;
 
     @PostMapping("/add")
-    public ResponseEntity<?> addAddress(@RequestBody Adress addressFromForm) {
+    public ResponseEntity addAddress(@RequestBody Adress addressFromForm) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = userRepository.findOneByEmail(auth.getName().toString());
@@ -42,7 +42,7 @@ public class AddressController {
             userRepository.save(currentUser);
             return ResponseEntity.ok(adress);
         } else {
-            return new ResponseEntity<Adress>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
 /*        try {

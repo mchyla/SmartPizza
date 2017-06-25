@@ -102,6 +102,12 @@ public class User {
         this.phones = phones;
     }
 
+    @ManyToMany()
+    @JoinTable(name="USER_PROMOTIONS",
+            joinColumns={@JoinColumn(name="USER_ID")},
+            inverseJoinColumns={@JoinColumn(name="PROMOTION_ID")})
+    private List<Promotion> promotion;
+
     @Override
     public String toString() {
         return "User{" +
