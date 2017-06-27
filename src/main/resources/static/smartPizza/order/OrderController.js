@@ -1,7 +1,7 @@
 /**
  * Created by Marcin on 30/12/2016.
  */
-angular.module('nikoApp').controller('OrderController', function ($scope, $resource, $http, $localStorage) {
+angular.module('nikoApp').controller('OrderController', function ($scope, $resource, $http, $localStorage, $window) {
     $scope.message = 'Hello from OrderController';
     $scope.menuMessage = ''
     $scope.allInd;
@@ -105,8 +105,9 @@ angular.module('nikoApp').controller('OrderController', function ($scope, $resou
             date: date
         };
 
-        $http.post('/api/order/add', userObject).success(function () { //wywloujemy
-
+        $http.post('/api/order/add', userObject).success(function () {
+            alert("Pomyślnie zakupiono pizze.");
+            $window.location.href = '/index.html';
             //loadAllPizzaFromDb();
         }).error(function () {
         })
